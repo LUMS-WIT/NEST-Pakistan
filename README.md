@@ -1,7 +1,5 @@
 # Projects Committed - MESSAGEix
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-https://anaconda.org/conda-forge/message-ix/badges/version.svg 
-https://anaconda.org/conda-forge/message-ix/badges/latest_release_date.svg
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4005684.svg)](https://doi.org/10.5281/zenodo.4005684)
 [![PyPI version](https://img.shields.io/pypi/v/message_ix.svg)](https://pypi.python.org/pypi/message_ix/)
 [![Anaconda version](https://img.shields.io/conda/vn/conda-forge/message-ix)](https://anaconda.org/conda-forge/message-ix)
