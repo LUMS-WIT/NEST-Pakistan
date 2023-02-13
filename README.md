@@ -1,10 +1,8 @@
 # Projects Committed - MESSAGEix
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4005684.svg)](https://doi.org/10.5281/zenodo.4005684)
 [![PyPI version](https://img.shields.io/pypi/v/message_ix.svg)](https://pypi.python.org/pypi/message_ix/)
 [![Anaconda version](https://img.shields.io/conda/vn/conda-forge/message-ix)](https://anaconda.org/conda-forge/message-ix)
 [![Documentation build](https://readthedocs.com/projects/iiasa-energy-program-message-ix/badge/?version=stable)](https://docs.messageix.org/en/stable/)
-[![Test coverage](https://codecov.io/gh/iiasa/message_ix/branch/main/graph/badge.svg)](https://codecov.io/gh/iiasa/message_ix)
 
 Climate Policy assessment and Mitigation Modeling to Integrate national and global TransiTion pathways for Environmental-friendly Development
 
@@ -12,6 +10,28 @@ Climate Policy assessment and Mitigation Modeling to Integrate national and glob
 
 ## Objectives
 The overall objective of this project is: to reinforce global climate change mitigation efforts by supporting the work of Asian researchers and experts on national and sectoral greenhouse gas emissions modelling. This is done by strengthening capacity building for GHG emissions modelling and exchanging best practices and know-how between leading EU and Asian modellers working closely with the government
+
+## Documentation
+
+installation Steps
+'''
+# Open CMD
+# create virtual environment 
+
+conda create -n envname 
+conda activate envname 
+
+# Install all required packages
+pip -r requirement.txt 
+
+# clone repo from below command and move to your project
+git clone https://github.com/WITLums/Committed.git
+cd committed
+
+# Open Jupyter notbook
+jupyter notebook
+
+'''
 
 ## License
 Copyright 2023 WIT Lums
