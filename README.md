@@ -1,13 +1,21 @@
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
 # Projects Committed - MESSAGEix
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+https://anaconda.org/conda-forge/message-ix/badges/version.svg 
+https://anaconda.org/conda-forge/message-ix/badges/latest_release_date.svg
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4005684.svg)](https://doi.org/10.5281/zenodo.4005684)
+[![PyPI version](https://img.shields.io/pypi/v/message_ix.svg)](https://pypi.python.org/pypi/message_ix/)
+[![Anaconda version](https://img.shields.io/conda/vn/conda-forge/message-ix)](https://anaconda.org/conda-forge/message-ix)
+[![Documentation build](https://readthedocs.com/projects/iiasa-energy-program-message-ix/badge/?version=stable)](https://docs.messageix.org/en/stable/)
+[![Build status](https://github.com/iiasa/message_ix/actions/workflows/pytest.yaml/badge.svg)](https://github.com/iiasa/message_ix/actions/workflows/pytest.yaml)
+[![Test coverage](https://codecov.io/gh/iiasa/message_ix/branch/main/graph/badge.svg)](https://codecov.io/gh/iiasa/message_ix)
+
 Climate pOlicy assessment and Mitigation Modeling to Integrate national and global TransiTion pathways for Environmental-friendly Development
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=Your_GitHub_Username/Your_GitHub_Repository_Name)
 
-# Objectives
+## Objectives
 The overall objective of this project is: to reinforce global climate change mitigation efforts by supporting the work of Asian researchers and experts on national and sectoral greenhouse gas emissions modelling. This is done by strengthening capacity building for GHG emissions modelling and exchanging best practices and know-how between leading EU and Asian modellers working closely with the government
 
-# License
+## License
 Copyright 2023 WIT Lums
 
    Licensed under the Apache License, Version 2.0 (the "License");
