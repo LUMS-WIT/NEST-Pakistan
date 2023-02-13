@@ -13,30 +13,25 @@ The overall objective of this project is: to reinforce global climate change mit
 
 ## Documentation
 
-installation Steps
-
-Open CMD and create virtual environment 
-
+<h4>Installation Steps</h4>
+<b>Open CMD and create virtual environment</b>
 '''
 conda create -n envname 
 conda activate envname 
-
 '''
 
-Install all required packages
+<b>Install all required packages</b>
 '''
 pip -r requirement.txt 
 '''
 
-clone repo from below command and move to your project
-
+<b>clone repo from below command and move to your project</b>
 '''
 git clone https://github.com/WITLums/Committed.git
 cd committed
-
 '''
-Open Jupyter notbook
 
+<b>Open Jupyter notbook</b>
 '''
 jupyter notebook
 '''
