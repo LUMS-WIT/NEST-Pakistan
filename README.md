@@ -15,6 +15,8 @@ The overall objective of this project is: to reinforce global climate change mit
 
 <h2>Installation Steps</h2><br>
 <b>Open CMD and create virtual environment</b>
+
+
 ```
 conda create -n envname 
 conda activate envname 
