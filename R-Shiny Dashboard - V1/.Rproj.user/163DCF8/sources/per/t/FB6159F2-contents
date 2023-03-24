@@ -1,0 +1,130 @@
+#### Plot highcharts for CO2 emissions ####
+library(highcharter)
+library(xts)
+library(dplyr)
+
+# Global path or data
+path = "CO2 Emissions from Pakistan’s Energy sector.csv"
+data = read.csv(path)
+
+# 1
+# function to make highcharts by fuel type
+get_byfuel_data <- function(data){
+  
+  highchart() %>% 
+  hc_title(text = "CO2 Emissions by Fuel in Pakistan over past four Decades (Mn Ton)") %>%
+  hc_chart(type = "column") %>%
+  hc_plotOptions(column = list(stacking = "normal")) %>%
+  hc_xAxis(categories = data$Fiscal.Year) %>%
+  hc_add_series(name="Oil Emission",
+                data = data$Oil) %>%
+  hc_add_series(name="Gas Emission",
+                data = data$Gas) %>%
+  hc_add_series(name="Coal Emission",
+                data = data$Coal) %>%
+    
+  hc_add_series(name="Total Emissions",
+                data = data$Total,
+                type = "line")
+
+}
+
+
+# 2
+# function to make highcharts by Sectoral CO2 emissions from coal consumption by year
+get_bycoal_data <- function(data){
+  
+  highchart() %>% 
+  hc_title(text = "Pakistan's Sectoral CO2 emissions from coal consumption by year (Mn Ton)") %>%
+  hc_chart(type = "column") %>%
+  hc_plotOptions(column = list(stacking = "normal")) %>%
+  hc_xAxis(categories = data$Fiscal.Year) %>%
+  hc_add_series(name="Household Emission",
+                data = data$Household, color = "orange") %>%
+  hc_add_series(name="Power Emission",
+                data = data$Power) %>%
+  hc_add_series(name="Bricklin Emission",
+                data = data$Brick.Kilns) %>%
+  hc_add_series(name="Cement Emission",
+                data = data$Cement) %>%
+  hc_add_series(name="Other Govt",
+                data = data$Other.Govt.) %>%
+    
+  hc_add_series(name="Total Emissions",
+                data = data$Total.1,
+                type = "line")  
+  # %>%
+  # 
+  # hc_add_theme(hc_theme_ft())
+
+}
+
+
+# 3
+# function to make highcharts Sectoral CO2 emissions from Petrolium product consumption by year							
+get_bypetrolium_products_data <- function(data){
+  
+  highchart() %>% 
+  hc_title(text = "Pakistan's Sectoral CO2 emissions from Petrolium product consumption by year (Mn Ton)") %>%
+  hc_chart(type = "column") %>%
+  hc_plotOptions(column = list(stacking = "normal")) %>%
+  hc_xAxis(categories = data$Fiscal.Year) %>%
+  hc_add_series(name="Household Emission",
+                data = data$Household.1, color = "orange") %>%
+  hc_add_series(name="Industry Emission",
+                data = data$Industry) %>%
+  hc_add_series(name="Agriculture Emission",
+                data = data$Agriculture) %>%
+  hc_add_series(name="Transport Emission",
+                data = data$Transport) %>%
+  hc_add_series(name="Power Emission",
+                data = data$Power.1) %>%
+  hc_add_series(name="Other Govt",
+                data = data$Other.Govt) %>%
+    
+  hc_add_series(name="Total Emissions",
+                data = data$Total.2,
+                type = "line")  
+  # %>%
+  # 
+  # hc_add_theme(hc_theme_ft())
+
+}
+
+
+
+# 4
+# function to make highcharts Sectoral CO2 emissions from Gas consumption by year						
+get_bygas_products_data <- function(data){
+  
+  highchart() %>% 
+  hc_chart(type = "column") %>%
+  hc_title(text = "Pakistan's Sectoral CO2 emissions from Gas consumption by year (Mn Ton)") %>%
+  hc_plotOptions(column = list(stacking = "normal")) %>%
+  hc_xAxis(categories = data$Fiscal.Year) %>%
+  hc_add_series(name="Households Emission",
+                data = data$Households, color = "orange") %>%
+  hc_add_series(name="Commercial Emission",
+                data = data$Commercial) %>%
+  hc_add_series(name="Cement Emission",
+                data = data$Cement.1) %>%
+  hc_add_series(name="Fertilizer Emission",
+                data = data$Fertilizer) %>%
+  hc_add_series(name="Power Emission",
+                data = data$Power.2) %>%
+  hc_add_series(name="SSGC Emission",
+                data = data$SSGC.) %>%
+  hc_add_series(name="Industry Emission",
+                data = data$Industry.1) %>%
+  hc_add_series(name="Transport (CNG) Emission",
+                data = data$Transport..CNG...) %>%
+    
+  hc_add_series(name="Total Emissions",
+                data = data$Total.3,
+                type = "line")  
+  # %>%
+  # 
+  # hc_add_theme(hc_theme_ft())
+
+}
+

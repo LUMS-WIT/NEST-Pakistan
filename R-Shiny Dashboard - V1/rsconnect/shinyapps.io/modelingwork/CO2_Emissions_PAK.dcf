@@ -1,0 +1,14 @@
+name: CO2_Emissions_PAK
+title: CO2_Emissions_PAK
+username:
+account: modelingwork
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8613997
+bundleId: 6981754
+url: https://modelingwork.shinyapps.io/CO2_Emissions_PAK/
+when: 1679312185.01415
+lastSyncTime: 1679312185.01416
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: highcharts_c02_emissions.R
