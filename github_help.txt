@@ -1,0 +1,30 @@
+Git Help Commands
+
+- git clone
+- cd Project_name
+- git switch -c New-Branch
+- git branch -a
+- git status
+- git add -all or git add .
+- git commit -m "commit massege"
+- git push --set-upstream origin branch_name
+
+
+Exceptions cases:
+warning: in the working copy of 'filename', 
+LF will be replaced by CRLF the next time Git touches it
+
+Solved: 
+
+When Git touches the file 
+(for example, when you commit changes or switch branches), 
+it will automatically convert the line endings to the expected format, 
+which may result in changes to the file that you didn't intend.
+
+To resolve this warning, you can configure Git to use the 
+same line endings that are currently used in the file. 
+To do this, you can set the "core.autocrlf" 
+configuration option to "false". You can do this by 
+running the following command in your Git repository:
+
+- git config core.autocrlf false
