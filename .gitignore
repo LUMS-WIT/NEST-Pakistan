@@ -1,2 +1,2 @@
 # add name of files being ignore
-**/__pycache__/
+__pycache__/
