@@ -37,7 +37,7 @@ pip -r requirement.txt
 ```
 
 <h2>Clone or Run Next-Pakistan model</h2><br>
-<b>Step1: clone repo from below command and move to your project</b>
+<b>Step1: clone repository from below command and change path to move into your project directory</b>
 
 
 
