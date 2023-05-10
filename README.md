@@ -14,7 +14,7 @@ The overall objective of this project is: to reinforce global climate change mit
 ## Documentation
 
 <h2>Installation Steps</h2><br>
-<b>Open CMD and create virtual environment</b>
+<b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
 
 
 ```
@@ -22,21 +22,32 @@ conda create -n envname
 conda activate envname 
 ```
 
-<b>Install all required packages</b>
+<b>Step2: Configure conda to install message_ix from the conda-forge channel and Install the ixmp package into the current environment </b>
+
+
+```
+conda config --prepend channels conda-forge
+conda install -c conda-forge ixmp 
+```
+
+<b>Step3: Install all other required packages including MESSAGEix</b>
 ```
 pip -r requirement.txt 
 ```
 
-<b>clone repo from below command and move to your project</b>
+<h2>Clone or Run Next-Pakistan model</h2><br>
+<b>Step1: clone repo from below command and move to your project</b>
 ```
 git clone https://github.com/WITLums/Committed.git
 cd committed
 ```
 
-<b>Open Jupyter notbook</b>
+<b>Step2: On exisitng open CMD type below command to Open Jupyter notbook</b>
 ```
 jupyter notebook
 ```
+
+<b>On the top nav of the notebook you will find run all cell option, simply click and get desire result in /output folder</b>
 
 ## License
 Copyright 2023 WIT Lums
