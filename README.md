@@ -17,6 +17,7 @@ The overall objective of this project is: to reinforce global climate change mit
 <b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
 
 
+
 ```
 conda create -n envname 
 conda activate envname 
@@ -37,6 +38,7 @@ pip -r requirement.txt
 
 <h2>Clone or Run Next-Pakistan model</h2><br>
 <b>Step1: clone repo from below command and move to your project</b>
+
 
 ```
 git clone https://github.com/WITLums/Committed.git
