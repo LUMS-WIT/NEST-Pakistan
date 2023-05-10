@@ -7,7 +7,6 @@
 
 Climate Policy assessment and Mitigation Modeling to Integrate national and global TransiTion pathways for Environmental-friendly Development
 
-![GitHub Contributors Image](https://contrib.rocks/image?repo=WITLums/Committed)
 
 ## Objectives
 The overall objective of this project is: to reinforce global climate change mitigation efforts by supporting the work of Asian researchers and experts on national and sectoral greenhouse gas emissions modelling. This is done by strengthening capacity building for GHG emissions modelling and exchanging best practices and know-how between leading EU and Asian modellers working closely with the government
@@ -15,7 +14,8 @@ The overall objective of this project is: to reinforce global climate change mit
 ## Documentation
 
 <h2>Installation Steps</h2><br>
-<b>Open CMD and create virtual environment</b>
+<b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
+
 
 
 ```
@@ -23,21 +23,35 @@ conda create -n envname
 conda activate envname 
 ```
 
-<b>Install all required packages</b>
+<b>Step2: Configure conda to install message_ix from the conda-forge channel and Install the ixmp package into the current environment </b>
+
+
+```
+conda config --prepend channels conda-forge
+conda install -c conda-forge ixmp 
+```
+
+<b>Step3: Install all other required packages including MESSAGEix</b>
 ```
 pip -r requirement.txt 
 ```
 
-<b>clone repo from below command and move to your project</b>
+<h2>Clone or Run Next-Pakistan model</h2><br>
+<b>Step1: clone repository from below command and change path to move into your project directory</b>
+
+
+
 ```
 git clone https://github.com/WITLums/Committed.git
 cd committed
 ```
 
-<b>Open Jupyter notbook</b>
+<b>Step2: Into the current environment type below command to Open Jupyter notbook</b>
 ```
 jupyter notebook
 ```
+
+<b><i>On the top nav-bar of the notebook you will find run all cell option, simply click on it and wait untill execuation complete and you will find your desire result in /output folder</i></b>
 
 ## License
 Copyright 2023 WIT Lums
