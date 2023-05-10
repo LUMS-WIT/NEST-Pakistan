@@ -46,12 +46,12 @@ git clone https://github.com/WITLums/Committed.git
 cd committed
 ```
 
-<b>Step2: Into the current environmentD type below command to Open Jupyter notbook</b>
+<b>Step2: Into the current environment type below command to Open Jupyter notbook</b>
 ```
 jupyter notebook
 ```
 
-<b>On the top nav-bar of the notebook you will find run all cell option, simply click on it and wait untill execuation complete and you will find your desire result in /output folder</b>
+<b><i>On the top nav-bar of the notebook you will find run all cell option, simply click on it and wait untill execuation complete and you will find your desire result in /output folder</i></b>
 
 ## License
 Copyright 2023 WIT Lums
