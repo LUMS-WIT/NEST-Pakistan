@@ -42,7 +42,7 @@ pip -r requirement.txt
 
 
 ```
-git@github.com:LUMS-WIT/NEST-Pakistan.git
+gh repo clone LUMS-WIT/NEST-Pakistan
 cd committed
 ```
 
