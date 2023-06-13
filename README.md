@@ -29,7 +29,7 @@ Make sure to have an account on github and git is properly installed on your sys
 #### 3: Python
 Messageix framework is build on python
 
-#### 4: Python
+#### 4: VS Code
 
 ## Installation Steps
 <b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
