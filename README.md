@@ -25,11 +25,9 @@ The overall objective of this project is: to reinforce global climate change mit
 - [Thanks](#thanks)
 - [Copyright and license](#copyright-and-license)
 
-## Documentation
+## Prerequisite
 
-### Prerequisite
-
-#### Bash/CMD
+#### 1: Bash/CMD
 Basic Understanding of bash commands or windows comand line interface.
 
 <h4>Git/Github</h4>
