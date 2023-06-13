@@ -30,13 +30,13 @@ The overall objective of this project is: to reinforce global climate change mit
 #### 1: Bash/CMD
 Basic Understanding of bash commands or windows comand line interface.
 
-<h4>Git/Github</h4>
+#### 2: Git/Github
 Make sure to have an account on github and git is properly installed on your system. It will help to clone latest code or you can constribute with us in this journey. You can follow below steps in case you have't installed.
 
-<h4>Python</h4>
+#### 3: Python
 Messageix framework is build on python
 
-<h2>Installation Steps</h2><br>
+#### 4: Installation Steps
 <b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
 
 
