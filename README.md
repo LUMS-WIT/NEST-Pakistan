@@ -14,15 +14,8 @@ The overall objective of this project is: to reinforce global climate change mit
 ## Table of contents
 
 - [Prerequisite](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#prerequisite)
-- [Bash/CMD](#Bash/CMD)
-- [What's included](#whats-included)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [Community](#community)
-- [Versioning](#versioning)
-- [Creators](#creators)
-- [Thanks](#thanks)
+- [Installation Steps](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#installation-steps)
+- [Clone or Run Next-Pakistan model](#whats-included)
 - [Copyright and license](#copyright-and-license)
 
 ## Prerequisite
@@ -61,7 +54,7 @@ conda install -c conda-forge ixmp
 pip -r requirement.txt 
 ```
 
-<h2>Clone or Run Next-Pakistan model</h2><br>
+## Clone or Run Next-Pakistan model
 <b>Step1: clone repository from below command and change path to move into your project directory</b>
 
 
