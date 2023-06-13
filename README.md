@@ -13,7 +13,7 @@ The overall objective of this project is: to reinforce global climate change mit
 
 ## Table of contents
 
-- [Prerequisite](#Prerequisite)
+- [Prerequisite](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#prerequisite)
 - [Bash/CMD](#Bash/CMD)
 - [What's included](#whats-included)
 - [Bugs and feature requests](#bugs-and-feature-requests)
