@@ -11,7 +11,32 @@ Climate Policy assessment and Mitigation Modeling to Integrate national and glob
 ## Objectives
 The overall objective of this project is: to reinforce global climate change mitigation efforts by supporting the work of Asian researchers and experts on national and sectoral greenhouse gas emissions modelling. This is done by strengthening capacity building for GHG emissions modelling and exchanging best practices and know-how between leading EU and Asian modellers working closely with the government
 
+## Table of contents
+
+- [Prerequisite](#Prerequisite)
+- [Bash/CMD](#Bash/CMD)
+- [What's included](#whats-included)
+- [Bugs and feature requests](#bugs-and-feature-requests)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [Community](#community)
+- [Versioning](#versioning)
+- [Creators](#creators)
+- [Thanks](#thanks)
+- [Copyright and license](#copyright-and-license)
+
 ## Documentation
+
+### Prerequisite
+
+#### Bash/CMD
+Basic Understanding of bash commands or windows comand line interface.
+
+<h4>Git/Github</h4>
+Make sure to have an account on github and git is properly installed on your system. It will help to clone latest code or you can constribute with us in this journey. You can follow below steps in case you have't installed.
+
+<h4>Python</h4>
+Messageix framework is build on python
 
 <h2>Installation Steps</h2><br>
 <b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
