@@ -15,7 +15,7 @@ The overall objective of this project is: to reinforce global climate change mit
 
 - [Prerequisite](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#prerequisite)
 - [Installation Steps](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#installation-steps)
-- [Clone or Run Next-Pakistan model](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#clone-or-run-next-pakistan-model)
+- [Clone or Run Next-Pakistan model](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#next-step-clone-or-run-next-pakistan-model)
 - [Copyright and license](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#license)
 
 ## Prerequisite
