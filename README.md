@@ -21,10 +21,10 @@ The overall objective of this project is: to reinforce global climate change mit
 ## Prerequisite
 
 #### 1: Bash/CMD
-Basic Understanding of <a href="[url](https://www.tutorialspoint.com/unix/shell_scripting.htm)">bash commands</a> or windows comand line interface.
+Basic Understanding of <a href="https://www.tutorialspoint.com/unix/shell_scripting.htm">bash commands</a> or Windows command line interface.
 
-#### 2: Git/Github
-Make sure to have an account on github and git is properly installed on your system. It will help to clone latest code or you can constribute with us in this journey. You can follow below steps in case you have't installed.
+#### 2: Git/GitHub
+Make sure to have an account on GitHub and git is properly installed on your system. It will help to clone the latest code or you can contribute with us in this journey. You can follow the below steps in case you haven't installed it.
 
 #### 3: Python
 Messageix framework is build using python programming langauge. In order to build or run model python is required to install.
