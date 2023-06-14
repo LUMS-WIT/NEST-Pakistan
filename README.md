@@ -30,7 +30,7 @@ Make sure to have an account on <a href="https://github.com/"> GitHub </a> or <a
 Messageix framework is build on <a href= "https://www.python.org/downloads/">python programming langauge </a>. It is required to install to build or run model files.
 
 #### 4: Anaconda/Miniconda
-Anaconda software helps you create an environment for many different versions of Python and package versions. Anaconda is also used to install, remove, and upgrade packages in your project environments.
+Anaconda software helps you create an environment for many different versions of Python and package versions. <a href= "https://docs.anaconda.com/free/anaconda/install/windows/"> Anaconda</a> is also used to install, remove, and upgrade packages in your project environments.
 
 #### 5: VS Code
 There so many code editors to run python code but here we suggest to utilize <a href= "https://www.python.org/downloads/">VS CODE</a> becasue it's help to manage your enviornments and version control using github.
