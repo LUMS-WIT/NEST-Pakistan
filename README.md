@@ -24,12 +24,13 @@ The overall objective of this project is: to reinforce global climate change mit
 Basic Understanding of <a href="https://www.tutorialspoint.com/unix/shell_scripting.htm">bash commands</a> or Windows command line interface.
 
 #### 2: Git/GitHub
-Make sure to have an account on GitHub and git is properly installed on your system. It will help to clone the latest code or you can contribute with us in this journey. You can follow the below steps in case you haven't installed it.
+Make sure to have an account on <a href="https://github.com/"> GitHub </a> or <a href="https://git-scm.com/downloads"> GIT </a> is properly installed on your system. It will help to clone the latest code or you can contribute with us in this journey. You can follow the below steps in case you haven't installed it.
 
 #### 3: Python
-Messageix framework is build using python programming langauge. In order to build or run model python is required to install.
+Messageix framework is build on <a href= "https://www.python.org/downloads/">python programming langauge </a>. It is required to install to build or run model files.
 
 #### 4: VS Code
+There so many code editors to run python code but here we suguuest to utilize <a href= "https://www.python.org/downloads/">VS CODE</a> becasue it's help to manage your enviornments and version control using github.
 
 ## Installation Steps
 <b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
