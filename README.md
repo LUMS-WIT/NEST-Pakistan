@@ -29,12 +29,14 @@ Make sure to have an account on <a href="https://github.com/"> GitHub </a> or <a
 #### 3: Python
 Messageix framework is build on <a href= "https://www.python.org/downloads/">python programming langauge </a>. It is required to install to build or run model files.
 
-#### 4: VS Code
-There so many code editors to run python code but here we suguuest to utilize <a href= "https://www.python.org/downloads/">VS CODE</a> becasue it's help to manage your enviornments and version control using github.
+#### 4: Anaconda/Miniconda
+Anaconda software helps you create an environment for many different versions of Python and package versions. Anaconda is also used to install, remove, and upgrade packages in your project environments.
+
+#### 5: VS Code
+There so many code editors to run python code but here we suggest to utilize <a href= "https://www.python.org/downloads/">VS CODE</a> becasue it's help to manage your enviornments and version control using github.
 
 ## Installation Steps
-<b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
-
+<b>Step1: Open Ananconda/minconda command line prompt from the start manu and create a virtual environment</b>
 
 
 ```
@@ -55,13 +57,12 @@ conda install -c conda-forge ixmp
 pip -r requirement.txt 
 ```
 
-## Clone or Run Next-Pakistan model
+## Next Step: Clone or Run Next-Pakistan model
 <b>Step1: clone repository from below command and change path to move into your project directory</b>
 
 
-
 ```
-git clone https://github.com/WITLums/Committed.git
+gh repo clone LUMS-WIT/NEST-Pakistan
 cd committed
 ```
 
@@ -71,6 +72,7 @@ jupyter notebook
 ```
 
 <b><i>On the top nav-bar of the notebook you will find run all cell option, simply click on it and wait untill execuation complete and you will find your desire result in /output folder</i></b>
+
 
 ## License
 Copyright 2023 WIT Lums
