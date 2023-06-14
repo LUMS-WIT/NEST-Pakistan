@@ -21,13 +21,13 @@ The overall objective of this project is: to reinforce global climate change mit
 ## Prerequisite
 
 #### 1: Bash/CMD
-Basic Understanding of bash commands or windows comand line interface.
+Basic Understanding of <a href="[url](https://www.tutorialspoint.com/unix/shell_scripting.htm)">bash commands</a> or windows comand line interface.
 
 #### 2: Git/Github
 Make sure to have an account on github and git is properly installed on your system. It will help to clone latest code or you can constribute with us in this journey. You can follow below steps in case you have't installed.
 
 #### 3: Python
-Messageix framework is build on python
+Messageix framework is build using python programming langauge. In order to build or run model python is required to install.
 
 #### 4: VS Code
 
