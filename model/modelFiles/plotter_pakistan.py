@@ -468,7 +468,7 @@ def plot(alldf, caseName, path):
                 handles, labels = ax.get_legend_handles_labels()
 
                 plt.tick_params(axis='both', which='major', labelsize=fntsz)
-                plt.grid(b=True, which='both', linewidth=0.1, color='silver',
+                plt.grid(visible=True, which='both', linewidth=0.1, color='silver',
                          linestyle='-')
                 ax.set_xticklabels(dfs.index, rotation=30)
 
