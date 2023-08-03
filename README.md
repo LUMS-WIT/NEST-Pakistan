@@ -11,11 +11,32 @@ Climate Policy assessment and Mitigation Modeling to Integrate national and glob
 ## Objectives
 The overall objective of this project is: to reinforce global climate change mitigation efforts by supporting the work of Asian researchers and experts on national and sectoral greenhouse gas emissions modelling. This is done by strengthening capacity building for GHG emissions modelling and exchanging best practices and know-how between leading EU and Asian modellers working closely with the government
 
-## Documentation
+## Table of contents
 
-<h2>Installation Steps</h2><br>
-<b>Step1: Open Ananconda/minconda cmd and create a virtual environment</b>
+- [Prerequisite](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#prerequisite)
+- [Installation Steps](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#installation-steps)
+- [Clone or Run Next-Pakistan model](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#next-step-clone-or-run-next-pakistan-model)
+- [Copyright and license](https://github.com/LUMS-WIT/NEST-Pakistan/blob/dev-pak/README.md#license)
 
+## Prerequisite
+
+#### 1: Bash/CMD
+Basic Understanding of <a href="https://www.tutorialspoint.com/unix/shell_scripting.htm">bash commands</a> or Windows command line interface.
+
+#### 2: Git/GitHub
+Make sure to have an account on <a href="https://github.com/"> GitHub </a> or <a href="https://git-scm.com/downloads"> GIT </a> is properly installed on your system. It will help to clone the latest code or you can contribute with us in this journey. You can follow the below steps in case you haven't installed it.
+
+#### 3: Python
+Messageix framework is build on <a href= "https://www.python.org/downloads/">python programming langauge </a>. It is required to install to build or run model files.
+
+#### 4: Anaconda/Miniconda
+Anaconda software helps you create an environment for many different versions of Python and package versions. <a href= "https://docs.anaconda.com/free/anaconda/install/windows/"> Anaconda</a> is also used to install, remove, and upgrade packages in your project environments.
+
+#### 5: VS Code
+There so many code editors to run python code but here we suggest to utilize <a href= "https://www.python.org/downloads/">VS CODE</a> becasue it's help to manage your enviornments and version control using github.
+
+## Installation Steps
+<b>Step1: Open Ananconda/minconda command line prompt from the start manu and create a virtual environment</b>
 
 
 ```
@@ -36,13 +57,12 @@ conda install -c conda-forge ixmp
 pip -r requirement.txt 
 ```
 
-<h2>Clone or Run Next-Pakistan model</h2><br>
+## Next Step: Clone or Run Next-Pakistan model
 <b>Step1: clone repository from below command and change path to move into your project directory</b>
 
 
-
 ```
-git clone https://github.com/WITLums/Committed.git
+gh repo clone LUMS-WIT/NEST-Pakistan
 cd committed
 ```
 
@@ -52,6 +72,7 @@ jupyter notebook
 ```
 
 <b><i>On the top nav-bar of the notebook you will find run all cell option, simply click on it and wait untill execuation complete and you will find your desire result in /output folder</i></b>
+
 
 ## License
 Copyright 2023 WIT Lums
