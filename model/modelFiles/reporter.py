@@ -226,7 +226,6 @@ def primary_energy_by_fuel_plot(pyam_df):
 
     data.plot.stack(title = 'Primary Energy by fuel - Baseline Scenario')
     plt.legend(loc=1)
-    plt.ylabel("TWh")
     plt.tight_layout()
     plt.show()
 
@@ -347,7 +346,6 @@ def demand_by_sector_plot(pyam_df):
 
     data.plot.stack(title = 'Demands by sector')
     plt.legend(loc=1)
-    plt.ylabel("TWh")
     plt.tight_layout()
     plt.show()
 
@@ -442,7 +440,6 @@ def emission_plots(pyam_df):
 
     data.plot.stack(title = 'CO2 Emissions - Baseline Scenario')
     plt.legend(loc=1)
-    plt.ylabel("TWh")
     plt.tight_layout()
     plt.show()
 
@@ -611,7 +608,6 @@ def operation_investment_cost_plot(pyam_df):
 
     data.plot.stack(title = 'Total (Operational+ Investment) Costs - Baseline')
     plt.legend(loc=1)
-    plt.ylabel("TWh")
     plt.tight_layout()
     plt.show()
 

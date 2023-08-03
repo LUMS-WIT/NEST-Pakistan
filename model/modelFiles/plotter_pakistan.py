@@ -368,7 +368,6 @@ def plotter(msgSC, caseName, path):
     df1 = msgSC.var('EMISS', {'emission': ems, 'node': nodeloc})
     alldf['Total GHG emissions (MtCeq)'] = group(df1, ['year', 'emission'],
                                                  'lvl', 0.0, yr)
-    #print(alldf)
     return(alldf)
 
 # 7 Plotting
@@ -381,7 +380,7 @@ def plot(alldf, caseName, path):
     lw = 0.1
     ticksz = -1
     tickwdt = 0.2
-    yr_min = 1960
+    yr_min = 2015
     yr_max = 2055
 
     # Prepration for Excel writings
@@ -489,7 +488,7 @@ def plot(alldf, caseName, path):
                 #     ha='center') # horizontal alignment can be left, right or center
 
                 pdf.savefig()
-                plt.show()
+                #plt.show()
                 plt.close()
                 
     # Savig Excel file

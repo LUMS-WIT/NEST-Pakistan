@@ -85,5 +85,5 @@ def unit_correction(mp, msgSC):
                 _par = _par.assign(unit=unit_dict[p])
                 msgSC.add_par(p, _par)
                 print(p)
-    msgSC.commit('update units')
+    #msgSC.commit('update units')
     print('- Units were corrected.')
