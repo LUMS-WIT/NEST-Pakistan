@@ -85,8 +85,8 @@ def adjust_hydro(scenario, years):
 
     # Remova initial_activity_lo form model
     initial_hydro = make_df('initial_activity_lo', node_loc = 'Pakistan', technology = "hydro_lc", 
-                    year_act = years, time = 'year', value = 0.0001, unit = 'GWa/a' )
-    scenario.add_par('initial_activity_lo', initial_hydro)
+                    year_act = years, time = 'year', value = 2, unit = 'GWa/a' )
+    scenario.remove_par('initial_activity_lo', initial_hydro)
 
     # hydro_lc - intial_new_capacity_up
     initial_cap_up_hydro = make_df("initial_new_capacity_up", node_loc = 'Pakistan', technology = 'hydro_lc', 
