@@ -266,35 +266,35 @@ def demands(msgSC, path, ssp):
                                         'gdp':gdpf,
                                         'gdpc':gdpcf})
 
-                # Check
-                print('--- cmdty ---')
-                print(cmdty)
+                # # Check
+                # print('--- cmdty ---')
+                # print(cmdty)
 
-                print('--- dm ---')
-                print(dm)
+                # print('--- dm ---')
+                # print(dm)
 
-                print('--- country: total ---')
-                print(dff.value.iloc[ind])
+                # print('--- country: total ---')
+                # print(dff.value.iloc[ind])
 
-                print('---country: pc set----')
-                print(dff.pc.iloc[ind])
+                # print('---country: pc set----')
+                # print(dff.pc.iloc[ind])
 
-                print('---country: pc act----')
-                print(dm.value.sum()/dm0.value.sum()-1)
+                # print('---country: pc act----')
+                # print(dm.value.sum()/dm0.value.sum()-1)
 
-                print('--- target ---')
-                print(dt)
+                # print('--- target ---')
+                # print(dt)
 
-                print('---  total ---')
-                print(dm.value.sum())
+                # print('---  total ---')
+                # print(dm.value.sum())
 
                 # set the country level demand for this commodity and time step
                 dff.value.iloc[ind] = dm.value.to_numpy()[0]
 
-                if ind > 0 :
-                    print('--- diff ---')
-                    print(((dff.value.iloc[ind]/dff.value.iloc[ind-1])-1))
-                    print(dff.pc.iloc[ind])
+                # if ind > 0 :
+                #     print('--- diff ---')
+                #     print(((dff.value.iloc[ind]/dff.value.iloc[ind-1])-1))
+                #     print(dff.pc.iloc[ind])
 
             # add demand for particular commodity to the model
             dmds.append(dff[list(msgSC.par('demand').columns)])
@@ -307,6 +307,7 @@ def demands(msgSC, path, ssp):
 
     # add demand for particular commodity to the model
     msgSC.add_par('demand', dmds)
+    print("-- Demands are updated --")
 
     # # commit changes to demands
     # msgSC.commit('demand data added!')
