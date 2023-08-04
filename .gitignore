@@ -1,2 +1,6 @@
 # add name of files being ignore
-__pycache__
+*__pycache__
+*.cypython
+*.pyc
+*-checkpoint.ipynb
+*__init__.py
