@@ -70,7 +70,7 @@ def adjust_hydro(scenario, years):
         
         # Adjust growht_activity_up
         growth_hydro = make_df('growth_activity_up',node_loc = 'Pakistan', technology = i, 
-                             year_act = years, time = 'year', value = 0.5, unit = '-' )  
+                             year_act = years, time = 'year', value = 0.9, unit = '-' )  
         scenario.add_par('growth_activity_up', growth_hydro)
        
        # Adjust growht_activity_lo
@@ -85,8 +85,8 @@ def adjust_hydro(scenario, years):
 
     # Remova initial_activity_lo form model
     initial_hydro = make_df('initial_activity_lo', node_loc = 'Pakistan', technology = "hydro_lc", 
-                    year_act = years, time = 'year', value = 2.0, unit = 'GWa/a' )
-    scenario.remove_par('initial_activity_lo', initial_hydro)
+                    year_act = years, time = 'year', value = 0.0001, unit = 'GWa/a' )
+    scenario.add_par('initial_activity_lo', initial_hydro)
 
     # hydro_lc - intial_new_capacity_up
     initial_cap_up_hydro = make_df("initial_new_capacity_up", node_loc = 'Pakistan', technology = 'hydro_lc', 
@@ -180,19 +180,28 @@ def adjust_nuclear(scenario, years):
     scenario.add_par('initial_activity_lo', initial_gas)
 
 
-def main(scenario):
+
+def adjust_electricity(scenario):
 
     # Filter years from 2020-2050
     years = [x for x in scenario.set('year') if x >2015]
     
     # Run All functions to adjust values for all power plant
     adjust_hydro(scenario, years)
+    print("-- Hydro Adjusted --")
     adjust_solar(scenario, years)
+    print("-- Solar Adjusted --")
     adjust_bio(scenario, years)
+    print("-- Bio Adjusted --")
     adjust_coal(scenario)
+    print("-- Coal Adjusted --")
     adjust_wind(scenario, years)
+    print("-- Wind Adjusted --")
     adjust_gas(scenario, years)
+    print("-- Gas Adjusted --")
     adjust_nuclear(scenario, years)
+    print("-- Nuclear Adjusted --")
+    print("Great !! End")
 
 
     

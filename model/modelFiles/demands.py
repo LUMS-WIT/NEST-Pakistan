@@ -22,9 +22,7 @@ from modelFiles.downscale_demands import downscale_demands
 from modelFiles.parameter_modifier import import_parameter, copy_parameter
 from scipy.optimize import linprog
 
-def demands(msgSC, msgWSC, path, ssp):
-
-
+def demands(msgSC, path, ssp):
 
     nodeName = 'Pakistan'     # Name of the stand-alone model region.
     regionName = 'R14_SAS'      # Name of the reference region in MESSAGE global
@@ -34,8 +32,7 @@ def demands(msgSC, msgWSC, path, ssp):
     iso = 'PAK'
     reg = regionName
 
-
-    # region to country mapping
+    # Region to country mapping
     reg_df = pd.read_excel( str(path) +
                            str('/') + str('iso_reg.xlsx'), 'Sheet1')
     reg_df['node'] = str('R14_') + reg_df['node'].astype(str)
@@ -109,9 +106,10 @@ def demands(msgSC, msgWSC, path, ssp):
     hist_year = 2015
     demand_yrs = [x for x in msg_yrs if x >= hist_year]
 
-    gmodel_df = pd.read_csv( str('/') + str('/messageix_pak_R11_SAS.csv'))
+    gmodel_df = pd.read_csv(path +  str('/') + str('/messageix_pak_R11_SAS.csv'))
+    gmodel_df2 = gmodel_df[(gmodel_df['year'] >= 2015) & (gmodel_df['year'] < 2065)]
 
-    df_region = gmodel_df
+    df_region = gmodel_df2
     df_dem = df_region
     cmdtys = df_dem['commodity'].unique().tolist()
 
@@ -150,166 +148,165 @@ def demands(msgSC, msgWSC, path, ssp):
 
     ssp_df = pd.concat(ssp_df)
 
-
     # initial df for demand data
     dmds = []
 
     # Go through each demand commodity and update demands then add to df above
-    for cmdty in cmdtys:
+    for cmdty in cmdtys: 
 
-        # Isolate regional demands
-        dff = df_region[df_region['commodity']==cmdty].sort_values('year').reset_index(drop=True)
+            # Isolate regional demands - give dataframe of loop commodity from our scenerio
+            dff = df_region[df_region['commodity']==cmdty].sort_values('year').reset_index(drop=True)  
 
-        # use dff as basis for country df so update node location
-        dff['node'] = iso
-        dff['node'] = dff['node'].str.replace('PAK','Pakistan')
+            # use dff as basis for country df so update node location
+            dff['node'] = iso
+            dff['node'] = dff['node'].str.replace('R11_SAS','Pakistan')
 
-        # Add percent change
-      # dff['pc'] = dff['value'].diff()
-        dff['pc'] = dff['value'].pct_change(periods = 1)
-      #  for iii in dff.index:
-      #       if iii == 0:
-      #            dff.pc[iii] = 0
-      #    else:
-      #           dff.pc[iii] = ( dff.pc[iii] / dff.value[(iii-1)] ) -1
+            # Add percent change
+        # dff['pc'] = dff['value'].diff()
+            dff['pc'] = dff['value'].pct_change(periods = 1)
+        #  for iii in dff.index:
+        #       if iii == 0:
+        #            dff.pc[iii] = 0
+        #    else:
+        #           dff.pc[iii] = ( dff.pc[iii] / dff.value[(iii-1)] ) -1
 
-        dff = dff.replace([np.inf,-np.inf,np.nan],0)
+            dff = dff.replace([np.inf,-np.inf,np.nan],0)
 
-        # list of technologies outputing on the demand level
-        tec_list = list(set((msgSC.par(
-                        'output', {'level': dff.level.values[0],
-                                   'commodity': cmdty}))['technology']))
+            # list of technologies outputing on the demand level
+            tec_list = list(set((msgSC.par(
+                            'output', {'level': dff.level.values[0],
+                                    'commodity': cmdty}))['technology']))
 
-        # filter historical activity datafrme to include technologies for current commodity
-        if(len(tec_list)>1):
-            ha = hist_act_df.loc[hist_act_df.technology.isin(tec_list)]
-        else:
-            ha = hist_act_df.loc[hist_act_df['technology'] == tec_list[0]]
-
-        # output efficiency for tecs (typically = 1)
-        oe = msgSC.par( 'output', {
-                            'technology': ha.technology.unique(),
-                            'commodity': cmdty}).groupby(['year_act','technology']).mean().reset_index()
-        oe = oe[['technology','year_act','value']]
-
-        # update historical activity to account for efficiency losses at the output
-        ha = pd.merge( ha, oe, on = ['year_act','technology'], how = 'left' ).dropna()
-        ha['value'] = ha['value_x'] * ha['value_y']
-
-        # Go through each demand year and scale the historical demands to follow regional growth pattern
-        # must be sorted by year because the state equations are updated sequentially
-        for ind in dff.index:
-
-            # if the first year, use the historical demands calibrated to iea db
-            if dff.year.iloc[ind] == demand_yrs[0]:
-
-                # isolate the regonal demand target
-                # dt = dff.value.iloc[ind]
-
-                # sum iea demands
-                dm = ha.loc[ha['year_act']==dff.year.iloc[ind]].groupby('node_loc').sum().reset_index()
-                dm = dm[['node_loc','value']]
-
-                # isolate gdp information
-                gdp = []
-                gdpc = []
-
-
-                gdp.append(ssp_df.gdp.to_numpy()[0])
-                gdpc.append(ssp_df.gdpc.to_numpy()[0])
-
-                dm = pd.DataFrame({'node':dm.node_loc.to_numpy(),
-                                    'value':dm.value.to_numpy(),
-                                    'ei':dm.value.to_numpy()/gdp,
-                                    'gdp':gdp,
-                                    'gdpc':gdpc})
-
-                dt = dm.value
-                dm0 = dm
-
-
-            # downscale the demands to match growth rate from regional pathway
+            # filter historical activity datafrme to include technologies for current commodity -- getting from excel
+            if(len(tec_list)>1):
+                ha = hist_act_df.loc[hist_act_df.technology.isin(tec_list)]
             else:
+                ha = hist_act_df.loc[hist_act_df['technology'] == tec_list[0]]
 
-                # update total regional demands using growth rate from global model
-                dt = dm.value * (1 + dff.pc.iloc[ind])
+            # output efficiency for tecs (typically = 1)
+            oe = msgSC.par( 'output', {
+                                'technology': ha.technology.unique(),
+                                'commodity': cmdty}).groupby(['year_act','technology']).mean().reset_index()
+            oe = oe[['technology','year_act','value']]
 
-                # update state equation variables
-                dm0 = dm
-                gdpf = []
-                gdpcf = []
+            # update historical activity to account for efficiency losses at the output
+            ha = pd.merge( ha, oe, on = ['year_act','technology'], how = 'left' ).dropna()
+            ha['value'] = ha['value_x'] * ha['value_y']
 
-                inds = (ssp_df['year']==dff.year.iloc[ind])
-                gdpf.append(ssp_df.loc[inds,'gdp'].to_numpy()[0])
-                gdpcf.append(ssp_df.loc[inds,'gdpc'].to_numpy()[0])
+            # print(ha)
+            # Go through each demand year and scale the historical demands to follow regional growth pattern
+            # must be sorted by year because the state equations are updated sequentially
+            for ind in dff.index:
 
-                # unload some variables and call LP downscaling algorithm
-                names = dm0.node.to_numpy()
-                vl = dm0.value.to_numpy()
-                gdpco = dm0.gdpc.to_numpy()
+                # if the first year, use the historical demands calibrated to iea db
+                if dff.year.iloc[ind] == demand_yrs[0]:
 
-                # don't allow 0 intensities in future time steps if not biomass technologies
-                if not 'biomass' in cmdty:
-                    ei = vl / gdpco
-                   # ei[np.where(ei==0)] = min(ei[ei.nonzero()])
-                    vl = ei * gdpco
+                    # isolate the regonal demand target
+                    # dt = dff.value.iloc[ind]
 
-                dmf = downscale_demands(
-                    dt, # target
-                    vl, # initial country demands
-                    gdpco, # initial country income
-                    gdpcf, # final country income
-                    gdpf, # final country total GDP
-                    names) # node names
+                    # sum iea demands
+                    dm = ha.loc[ha['year_act']==dff.year.iloc[ind]].groupby('node_loc').sum().reset_index()
+                    dm = dm[['node_loc','value']]
 
-                # update demand state variables
-                dm = pd.DataFrame({'node':dmf.node.to_numpy(),
-                                    'value':dmf.value.to_numpy(),
-                                    'ei':dmf.value.to_numpy()/gdpf,
-                                    'gdp':gdpf,
-                                    'gdpc':gdpcf})
+                    # isolate gdp information
+                    gdp = []
+                    gdpc = []
 
-            # Check
-            print('--- cmdty ---')
-            print(cmdty)
 
-            print('--- dm ---')
-            print(dm)
+                    gdp.append(ssp_df.gdp.to_numpy()[0])
+                    gdpc.append(ssp_df.gdpc.to_numpy()[0])
 
-            print('--- country: total ---')
-            print(dff.value.iloc[ind])
+                    dm = pd.DataFrame({'node':dm.node_loc.to_numpy(),
+                                        'value':dm.value.to_numpy(),
+                                        'ei':dm.value.to_numpy()/gdp,
+                                        'gdp':gdp,
+                                        'gdpc':gdpc})
 
-            print('---country: pc set----')
-            print(dff.pc.iloc[ind])
+                    dt = dm.value
+                    dm0 = dm
 
-            print('---country: pc act----')
-            print(dm.value.sum()/dm0.value.sum()-1)
+                # downscale the demands to match growth rate from regional pathway
+                else:
 
-            print('--- target ---')
-            print(dt)
+                    # update total regional demands using growth rate from global model
+                    dt = dm.value * (1 + dff.pc.iloc[ind])
 
-            print('---  total ---')
-            print(dm.value.sum())
+                    # update state equation variables
+                    dm0 = dm
+                    gdpf = []
+                    gdpcf = []
 
-            # set the country level demand for this commodity and time step
-            dff.value.iloc[ind] = dm.value.to_numpy()[0]
+                    inds = (ssp_df['year']==dff.year.iloc[ind])
+                    gdpf.append(ssp_df.loc[inds,'gdp'].to_numpy()[0])
+                    gdpcf.append(ssp_df.loc[inds,'gdpc'].to_numpy()[0])
 
-            if ind > 0 :
-                print('--- diff ---')
-                print(((dff.value.iloc[ind]/dff.value.iloc[ind-1])-1))
+                    # unload some variables and call LP downscaling algorithm
+                    names = dm0.node.to_numpy()
+                    vl = dm0.value.to_numpy()
+                    gdpco = dm0.gdpc.to_numpy()
+
+                    # don't allow 0 intensities in future time steps if not biomass technologies
+                    if not 'biomass' in cmdty:
+                        ei = vl / gdpco
+                    # ei[np.where(ei==0)] = min(ei[ei.nonzero()])
+                        vl = ei * gdpco
+
+                    dmf = downscale_demands(
+                        dt, # target
+                        vl, # initial country demands
+                        gdpco, # initial country income
+                        gdpcf, # final country income
+                        gdpf, # final country total GDP
+                        names) # node names
+
+                    # update demand state variables
+                    dm = pd.DataFrame({'node':dmf.node.to_numpy(),
+                                        'value':dmf.value.to_numpy(),
+                                        'ei':dmf.value.to_numpy()/gdpf,
+                                        'gdp':gdpf,
+                                        'gdpc':gdpcf})
+
+                # Check
+                print('--- cmdty ---')
+                print(cmdty)
+
+                print('--- dm ---')
+                print(dm)
+
+                print('--- country: total ---')
+                print(dff.value.iloc[ind])
+
+                print('---country: pc set----')
                 print(dff.pc.iloc[ind])
 
-        # add demand for particular commodity to the model
-        dmds.append(dff[list(msgSC.par('demand').columns)])
+                print('---country: pc act----')
+                print(dm.value.sum()/dm0.value.sum()-1)
+
+                print('--- target ---')
+                print(dt)
+
+                print('---  total ---')
+                print(dm.value.sum())
+
+                # set the country level demand for this commodity and time step
+                dff.value.iloc[ind] = dm.value.to_numpy()[0]
+
+                if ind > 0 :
+                    print('--- diff ---')
+                    print(((dff.value.iloc[ind]/dff.value.iloc[ind-1])-1))
+                    print(dff.pc.iloc[ind])
+
+            # add demand for particular commodity to the model
+            dmds.append(dff[list(msgSC.par('demand').columns)])
 
     dmds = pd.concat(dmds).reset_index()
     dmds['node'] = dmds['node'].str.replace('PAK','Pakistan')
 
-    # check out scenario
-    # msgSC.check_out()
+    #check out msgSC
+    #msgSC.check_out()
 
     # add demand for particular commodity to the model
     msgSC.add_par('demand', dmds)
 
     # # commit changes to demands
-    #msgSC.commit('demand data added!')
+    # msgSC.commit('demand data added!')
