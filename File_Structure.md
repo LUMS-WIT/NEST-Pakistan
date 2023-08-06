@@ -22,25 +22,27 @@ Overview of the scripts or data files use to build *MESSAGEix-Pak* baseline mode
     └── test_utilities.py       # Use to test any script or function
     └── utility.py              # Include all test cases and macro functions  
     
+### Model Files
+
 There are some scripts that run spontaneously in the *pakistan_model.ipynb* file to load data and adjust the baseline model scenario. These files 
 are placed in the modelfiles folder.
  
     .
     ├── ...
-    ├── modelFiles                                    # Test files (alternatively `spec` or `tests`)
-    │   ├── adjust_electricity_generation.py          # Load and stress tests
-    │   ├── adjust_renewable_potential.py                               # End-to-end, integration tests (alternatively `e2e`)
-    │   └── demands.py
-    │   └── downscale_demands.py
-    │   └── parameter_modifier.py
-    │   └── plotter_pakistan.py    
-    │   └── postprocess.py  
-    │   └── reporter.py   
-    │   └── share_constraints.py   
-    │   └── update_elec_share.py   
-    │   └── Update_historical_activity.py   
-    │   └── update_units_pakistan.py   
-    │   └── utilis.py   
+    ├── modelFiles                                    # Root file
+    │   ├── adjust_electricity_generation.py          # Script to adjust the electricity generation profile in the model
+    │   ├── adjust_renewable_potential.py             # Add renewable potential and capacity factor 
+    │   └── demands.py                                # Script to adjust demands in the model
+    │   └── downscale_demands.py                      # Downscale global demands to local region
+    │   └── parameter_modifier.py                     # Script to modify parameters in the model
+    │   └── plotter_pakistan.py                       # In order to get results from the model in CSV and plots
+    │   └── postprocess.py                            # Script to aggregate data frame to plot results
+    │   └── reporter.py                               # Scripts to plot (demands, primary energy, cost, and emissions) Areal charts.
+    │   └── share_constraints.py                      # Add the percentage of renewable shares in the model 
+    │   └── update_elec_share.py                      # Add percentage share of electric renewable technologies in the model
+    │   └── Update_historical_activity.py             # Update historical activity data according to new demands.
+    │   └── update_units_pakistan.py                  # Update Units for model parameters
+    │   └── utilis.py                                 # Some useful additional functions
     └── ...
 
 
