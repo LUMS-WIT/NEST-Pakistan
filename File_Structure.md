@@ -11,7 +11,7 @@ Overview of the scripts or data files use to build *MESSAGEix-Pak* baseline mode
     .
     ├── modelData               # List of Excel files (alternatively `csv`, `xlsx` ) for model input data.
     ├── modelFiles              # Python Script (alternatively `.py`) to add data and apply constraints on the model.
-    ├── Output                  # Output files (alternatively `pdf` or `xlsx`) include plots and data.
+    ├── Output                  # Output files (alternatively `pdf` or `xlsx`) include plots and output data.
     ├── .gitattributes          # add attributes of file extensions to compress while pushing or pulling the repository from GitHub.
     ├── .gitignore              # add name and extensions of files that are supposed to be not pushed or pulled from the GitHub repository.
     ├── LICENSE                  
@@ -44,6 +44,28 @@ are placed in the modelfiles folder.
     │   └── update_units_pakistan.py                  # Update Units for model parameters
     │   └── utilis.py                                 # Some useful additional functions
     └── ...
+
+### Model Data
+
+In this folder, we have multiple model input data files. These files are generally in the form of 'xlsx' and 'csv' which call in the model script to update and add data to the model. 
+ 
+    .
+    ├── ...
+    ├── modelData                                                      # Root file
+    │   ├── 25-07-2023-MESSAGEix_PK_ch_renewables_DEMAND.xlsx          # Updated and adjusted version of the primary model file to date (25-07-2023) - Backup
+    │   ├── data_MESSAGE_PK.xlsx                                       # Primary model file to add default setting and run baseline model 
+    │   └── global_demand.csv                                          # Given global demands divided into 11 regions from messageix_globium Model (IIASA)
+    │   └── iso_reg.xlsx                                               # Countries name according to iso format
+    │   └── messageix_pak_R11_SAS.csv                                  # Demand data for south asian region (SAS)
+    │   └── ModelSetup_pak.xlsx                                        # Model setup file to add. remove and update model inputs
+    │   └── OECD_SSP_GDP_PPP.xlsx                                      # GDP data for different countries from the OECD Env-Growth model
+    │   └── OECD_SSP_POP.xlsx                                          # Population data for different countries from the OECD Env-Growth model
+    │   └── pakistan_map.xlsx                                          # Get country wise setting to aggregate and update demand data 
+    │   └── Parameters_messageix_pak.xlsx                              # To update and add different parameters in the model
+    │   └── Parameters_pak.xlsx                                        # Backup and original file of *Parameters_messageix_pak*
+    │   └── wbi_pop_gdp_2015.xlsx                                      # GPD and POP values of 2015 for all countries (Use to update GDP and POP values of OECD Env-Growth model)
+    └── ...
+
 
 
 
