@@ -12,7 +12,7 @@
 <br>
 <img src="https://raw.githubusercontent.com/UmerYasin1/Wind-Speed-forcasting/main/Model%20flow.PNG" alt="Model Flow chart" class="inline"/>
 <br>
-<b>Adjust Some parameters in the model</b>
+<b>Adjust parameters</b>
 
 - Use IIASA Script to update model demands 
 - Some new demands look fine and some are a bit off with the literature
