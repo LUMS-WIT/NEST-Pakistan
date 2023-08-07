@@ -14,7 +14,9 @@ Overview of the scripts or data files use to build *MESSAGEix-Pak* baseline mode
     ├── Output                  # Output files (alternatively `pdf` or `xlsx`) include plots and output data.
     ├── .gitattributes          # add attributes of file extensions to compress while pushing or pulling the repository from GitHub.
     ├── .gitignore              # add name and extensions of files that are supposed to be not pushed or pulled from the GitHub repository.
-    ├── LICENSE                  
+    ├── File_Structure.md       # Detail of file structure in the model.
+    ├── LICENSE  
+    ├── Model_progress.md       # Activity/progress detail of model development.
     └── README.md
     └── github_help.txt         # Some useful commands which help to push or pull the latest code from GitHub 
     └── pakistan_model.ipynb    # Main model file which is supposed to run the model
