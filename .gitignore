@@ -3,3 +3,4 @@
 *.cypython
 *.pyc
 *-checkpoint.ipynb
+*__init__.py
