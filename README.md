@@ -5,7 +5,7 @@
 [![Anaconda version](https://img.shields.io/conda/vn/conda-forge/message-ix)](https://anaconda.org/conda-forge/message-ix)
 [![Documentation build](https://readthedocs.com/projects/iiasa-energy-program-message-ix/badge/?version=stable)](https://docs.messageix.org/en/stable/)
 
-Climate Policy assessment and Mitigation Modeling to Integrate national and global TransiTion pathways for Environmental-friendly Development
+Climate Policy Assessment and Mitigation Modeling to Integrate national and global TransiTion pathways for Environmental-friendly Development
 
 
 ## Objectives
