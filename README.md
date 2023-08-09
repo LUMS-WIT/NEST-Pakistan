@@ -9,7 +9,7 @@ Climate Policy Assessment and Mitigation Modeling to Integrate national and glob
 
 
 ## Objectives
-The overall objective of this project is: to reinforce global climate change mitigation efforts by supporting the work of Asian researchers and experts on national and sectoral greenhouse gas emissions modelling. This is done by strengthening capacity building for GHG emissions modelling and exchanging best practices and know-how between leading EU and Asian modellers working closely with the government
+The overall objective of this project is: to reinforce global climate change mitigation efforts by supporting the work of Asian researchers and experts on national and sectoral greenhouse gas emissions modeling. This is done by strengthening capacity building for GHG emissions modeling and exchanging best practices and know-how between leading EU and Asian modelers working closely with the government
 
 ## Table of contents
 
