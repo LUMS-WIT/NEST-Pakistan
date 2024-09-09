@@ -15,12 +15,12 @@ def adjust_renewable_potential_and_capacity(scenerio):
     # Filter years from 2020-2050
     years = [x for x in scenerio.set('year') if x >2020]
 
-    add_hydro_reneable_potential = make_df("renewable_potential", node = "Pakistan",
+    add_hydro_renewable_potential = make_df("renewable_potential", node = "Pakistan",
         commodity = "hydro",grade = "c1", level = "renewable", year = years, value = 60, unit = "GWa/a")
 
-    scenerio.add_par("renewable_potential", add_hydro_reneable_potential)
+    scenerio.add_par("renewable_potential", add_hydro_renewable_potential)
 
-    add_hydro_reneable_potential = make_df("renewable_capacity_factor", node = "Pakistan", commodity = "hydro",
+    add_hydro_renewable_potential = make_df("renewable_capacity_factor", node = "Pakistan", commodity = "hydro",
             grade = "c1", level = "renewable", year = years, value = 0.512, unit = "GWa/a")
 
-    scenerio.add_par("renewable_capacity_factor", add_hydro_reneable_potential)
+    scenerio.add_par("renewable_capacity_factor", add_hydro_renewable_potential)
