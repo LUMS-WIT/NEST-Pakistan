@@ -51,7 +51,7 @@ def shares_elec_trp(msgSDG, path, nodeName, suffix):
      tec = ['elec_trp']
    
      # defining technologing in cateogry of technologies 
-     msgSDG.add_set('cat_tec',pd.DataFrame({'type_tec':'elec_transport','technology':tec}))
+     msgSDG.add_set('cat_tec',pd.DataFrame({'type_tec':'transport','technology':tec}))
     
      # mapping total share from which share is intended 
      dic = {
