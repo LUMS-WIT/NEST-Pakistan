@@ -40,8 +40,8 @@ def expand_grid(dictionary):
 def shares_elec_trp(msgSDG, path, nodeName, suffix):
       
      # add type_tec for transport
-     type_tec = 'elec_transport'
-     msgSDG.add_set('type_tec', 'elec_transport')
+     type_tec = 'transport'
+     msgSDG.add_set('type_tec', 'transport')
     
      # defining share for transport
      shares = 'share_elec_trp'
