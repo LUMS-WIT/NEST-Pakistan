@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name='messageix_pakistan',
     version='0.1.0',
-    description='An Open Source Integrated Assessment Model for Canada',
+    description='An Open Source Integrated Assessment Model for Pakistan',
     author='Your Name',
     author_email='your.email@example.com',
     packages=find_packages(include=['MESSAGE_PK', 'MESSAGE_PK.*']),  # Adjust if needed
@@ -24,7 +24,6 @@ setup(
         'click',
         'message-ix-models[report]',
     ],
-    #dependency_links=["git+https://github.com/criscfer/message-ix-models.git@main"], 
     entry_points={
         'console_scripts': [
             'message-pakistan=MESSAGE_PK:messagerun',  

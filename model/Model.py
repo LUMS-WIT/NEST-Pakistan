@@ -16,16 +16,14 @@ from datetime import datetime
 import pyam
 import numpy as np
 
-from model.policies.hydrogen_shares import add_hydrogen_shares
+
 from model.utlities.pop_gdp import process_gdp_population_data, add_population_gdp_to_scenario
 from model.utlities.demands import adjust_demands
 from model.utlities.report import generate_report
 from model.utlities.historical_activity import balance_import_export, update_historical_activity
-from model.policies.OBPS import apply_obps
-from model.policies.demand_reduction import demand_reduction
-from model.policies.investment_tax_credit import add_investment_tax_credit
+
 from model.utlities.utils import (read_config_ctx, map_yv_ya_lt, config_validation, map_learning_rate)
-from model.policies.apply_renewable_potential import apply_renewable_potential
+
 
 from message_ix_models.util import (
 	broadcast,
