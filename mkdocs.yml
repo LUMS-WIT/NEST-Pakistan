@@ -1,0 +1,29 @@
+site_name: MESSAGEix Canada
+site_url: http://sesit.gitlab.io/message-ix/
+site_dir: public
+
+
+theme:
+  name: readthedocs
+
+nav:
+  - MESSAGEix-Canada: index.md
+  - Installation: installation.md  
+  - Getting Started: get_started.md        # Provide the file path
+  - Model Structure: model.md              # Provide the file path
+  - Model Scripts & Function: codebase.md
+  - Model Setup on Cloud: cloud.md
+  - Choosing Solvers: solvers.md
+  - Model Sensitivity Analysis: sensitivity.md
+                             # Provide the file path
+
+plugins:
+  - search
+  - macros:
+      include_dir: docs/include
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+

@@ -69,6 +69,7 @@ def unit_correction(mp, msgSC):
                  'kpvs': '-',
                  'lakl': '-',
                  'lotol': '-',
+                 'bound_emission': 'MtCO2',
                  # 'p_ref': '-',
                  'prfconst': '-',
                  'price_MESSAGE': 'USD/kW/a'
@@ -85,5 +86,5 @@ def unit_correction(mp, msgSC):
                 _par = _par.assign(unit=unit_dict[p])
                 msgSC.add_par(p, _par)
                 print(p)
-    msgSC.commit('update units')
+    #msgSC.commit('update units')
     print('- Units were corrected.')

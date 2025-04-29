@@ -1,0 +1,44 @@
+region_config:
+  region: Canada
+  per_region:
+    Abb: 
+    Countries: 
+    Parent: 
+    GDP: 
+    Keep_Parent: 
+    historical_split:
+scenario_config:
+  platform:
+    name: local
+    jvmargs: -Xmx16g
+  source_scenario:
+    model: MESSAGEix-PK
+    solve: True
+    scenario: baseline
+    scenario_name: baseline
+    annotation: Initial setup for Pakistan energy model.
+    version: new
+  policy_config:
+    add_technology_techs: ['h2_atr_ccs', 'gas_h2', 'h2_stor_geo', 'liq_h2',
+      'h2_atr', 'h2_gas_fc_trp', 'meth_h2'] #'h2_pyrolysis', 'h2_stor_geo_charge', 'h2_stor_geo_discharge'
+    process_historical: False
+    apply_renewable_potential: False
+    add_hydrogen_shares_f: False
+    add_techs: False
+    obps_policy_carbon_cost:
+      2025: 165.4251
+      2030: 285.2156 
+      more_than_2035: 387.89325
+  post_process_config:
+    to_excell: False
+    legacy_reporter: True
+    new_reporter: False
+    IDEA_format: False
+path_config:
+  provincial_input_file: scenarios/baseline/baseline.xlsx
+  scenario_folder: scenarios/baseline
+  out_dir: model/output
+  ITC_policy_input_data: ./data/assumptions_database_example(ITCs).csv
+  OBPS_policy_input_data: ./data/New_OBPS.xlsx
+  fix_cost_no_obps_input_data: ./data/fix_cost_no_obps.csv
+  obps_standart_merged_data_output: ./data/obps_standard.csv

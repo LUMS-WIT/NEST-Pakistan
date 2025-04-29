@@ -29,9 +29,10 @@ def attach_history(msgSC, tec, plotyrs):
     parname = 'historical_activity'
     act_hist = msgSC.par(parname, {'technology': tec, 'year_act': plotyrs})
     act_hist = act_hist[['technology', 'year_act', 'value']]
-    act_hist = act_hist.pivot('year_act', 'technology').fillna(0)
+    act_hist = act_hist.pivot(index='year_act', columns='technology', values='value').fillna(0)
     act_hist = act_hist[act_hist.columns[(act_hist > 0).any()]]
-    act_hist.columns = act_hist.columns.droplevel(0)
+    if isinstance(act_hist.columns, pd.MultiIndex):
+        act_hist.columns = act_hist.columns.droplevel(0)
     return act_hist
 
 
@@ -42,9 +43,10 @@ def plotdf(msgSC, tec, com, direction, plotyrs, yr):
                         (inputs.commodity.isin(com))][['technology',
                                                        'year_act', 'value']]
     inputs = inputs.groupby(['technology', 'year_act'], as_index=False).mean()
-    inputs = inputs.pivot('year_act', 'technology')
+    inputs = inputs.pivot(index='year_act', columns='technology', values='value')
     inputs = inputs[inputs.columns[(inputs != 0).any()]]
-    inputs.columns = inputs.columns.droplevel(0)
+    if isinstance(inputs.columns, pd.MultiIndex):
+        inputs.columns = inputs.columns.droplevel(0)
 
     act = msgSC.var('ACT').loc[msgSC.var('ACT').year_act.isin(plotyrs)]
     activity = act.loc[act.technology.isin(tec)][
@@ -52,9 +54,10 @@ def plotdf(msgSC, tec, com, direction, plotyrs, yr):
 
     activity = activity.groupby(['technology', 'year_act'],
                                 as_index=False).sum()
-    activity = activity.pivot('year_act', 'technology').fillna(0)
+    activity = activity.pivot(index='year_act', columns='technology', values='lvl').fillna(0)
     activity = activity[activity.columns[(activity != 0).any()]]
-    activity.columns = activity.columns.droplevel(0)
+    if isinstance(activity.columns, pd.MultiIndex):
+        activity.columns = activity.columns.droplevel(0)
 
     # Addding Historical Activity (to the graphs)
     act_hist = attach_history(msgSC, tec, plotyrs)

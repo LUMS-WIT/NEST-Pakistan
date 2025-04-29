@@ -1,0 +1,542 @@
+h2_atr_ccs:
+  # Technology specs: mode, commodities, description
+  description: natural gas type technology
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - electr
+        - gas
+      - com_value: 
+        - 0.05 #0.05
+        - 1.2
+      - com_level: 
+        - secondary
+        - secondary
+    - output: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 1
+      - com_level: 
+        - secondary 
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 40  #40
+  construction_time: 3 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 1054 #1054
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 30 
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0
+  # Emissions specifications
+  #TC = TCO2 * 0.2727
+  emission_factor: 0.0444
+  emission_type: CO2_cc
+  capacity_factor: 0.9
+  investment_lr: 0.9169
+  fixed_cost_lr: 0.9169
+
+h2_atr:
+  # Technology specs: mode, commodities, description
+  description: natural gas type technology
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - gas
+      - com_value: 
+        - 1.2
+      - com_level: 
+        - secondary
+    - output: 
+      - com_name: 
+        - hydrogen
+        - electr
+      - com_value: 
+        - 1
+        - 0.05
+      - com_level: 
+        - secondary 
+        - secondary
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 40
+  construction_time: 3 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 730.94
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 31.62
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0
+  # Emissions specifications
+  emission_factor: 0.6013
+  emission_type: CO2_cc
+  capacity_factor: 0.9
+  investment_lr: 0.9169
+  fixed_cost_lr: 1
+
+gas_h2:
+  # Technology specs: mode, commodities, description
+  description: hydrogen methanation
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 1.28
+      - com_level: 
+        - secondary
+    - output: 
+      - com_name: 
+        - d_heat
+        - gas
+      - com_value: 
+        - 0.2
+        - 1
+      - com_level: 
+        - secondary 
+        - secondary
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 30
+  construction_time: 3 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 641.94
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 12.83
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0
+  # Emissions specifications
+  emission_factor: 0
+  emission_type: CO2_cc
+  capacity_factor: 0.96
+  investment_lr: 0.9169
+  fixed_cost_lr: 1
+
+h2_stor_geo:
+  # Technology specs: mode, commodities, description
+  description: hydrogen storage in salt caverns
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 1
+      - com_level: 
+        - storage
+    - output: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 1
+      - com_level: 
+        - storage
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 40
+  construction_time: 1 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 294.57
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 0
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0 # example value for now
+  # Emissions specifications
+  emission_factor: 0
+  emission_type: CO2_cc
+  capacity_factor: 0.9 #fix this to TC/kWyr
+  investment_lr: 0.8
+  fixed_cost_lr: 1
+
+
+liq_h2:
+  # Technology specs: mode, commodities, description
+  description: fischer tropsch synthesis - lightoil production from h2
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - hydrogen
+        - electr
+      - com_value: 
+        - 1.46
+        - 0.068
+      - com_level: 
+        - secondary
+        - secondary
+    - output: 
+      - com_name: 
+        - lightoil
+        - d_heat
+      - com_value: 
+        - 1
+        - 0.34
+      - com_level: 
+        - secondary 
+        - secondary
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 30
+  construction_time: 3 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 1052.97
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 31.59
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0
+  # Emissions specifications
+  emission_factor: 0
+  emission_type: CO2_cc
+  capacity_factor: 0.95
+  investment_lr: 0.95
+  fixed_cost_lr: 1
+
+meth_h2:
+  # Technology specs: mode, commodities, description
+  description: methanol production from h2
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - hydrogen
+        - electr
+      - com_value: 
+        - 1.115
+        - 0.017
+      - com_level: 
+        - secondary
+        - secondary
+    - output: 
+      - com_name: 
+        - methanol
+        - d_heat
+      - com_value: 
+        - 1
+        - 0.05
+      - com_level: 
+        - primary 
+        - secondary
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 30
+  construction_time: 3 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 214.98
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 23.65
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0
+  # Emissions specifications
+  emission_factor: 0.00003459
+  emission_type: 'CO2_cc'
+  capacity_factor: 0.91
+  investment_lr: 0.931
+  fixed_cost_lr: 1
+
+h2_gas_fc_trp:
+  # Technology specs: mode, commodities, description
+  description: transport with gaseous h2 commodity
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 0.5556
+      - com_level: 
+        - secondary
+    - output: 
+      - com_name: 
+        - transport
+      - com_value: 
+        - 1
+      - com_level: 
+        - useful
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 25
+  construction_time: 0
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 2083.5
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 62.5
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0
+  # Emissions specifications
+  emission_factor: 0
+  emission_type: 'CO2_cc'
+  capacity_factor: 0.91
+  investment_lr: 0.91625
+  fixed_cost_lr: 1
+
+h2_pyrolysis:
+  # Technology specs: mode, commodities, description
+  description: hydrogen production from methane pyrolysis
+  mode: M1
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - gas
+        - electr
+      - com_value: 
+        - 1.83
+        - 0.07
+      - com_level: 
+        - primary
+        - secondary
+    - output: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 1
+      - com_level: 
+        - secondary
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 20
+  construction_time: 3
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 1228.16
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 48.77
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0
+  # Emissions specifications
+  emission_factor: 0.2941 
+  emission_type: 'CO2_cc'
+  capacity_factor: 0.9
+  investment_lr: 0.9168 #not in litterature as new technology. Assumption made that it is the same as other ethane techs
+  fixed_cost_lr: 1
+  fixed_cost_lr: 0
+
+h2_stor_geo_charge:
+  # Technology specs: mode, commodities, description
+  description: hydrogen storage charger in salt caverns
+  mode: charge
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - hydrogen
+        - electr
+      - com_value: 
+        - 1.05
+        - 0.018
+      - com_level: 
+        - secondary
+        - secondary
+    - output: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 1
+      - com_level: 
+        - storage
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 40
+  construction_time: 1 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 64
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 6.34
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0 # example value for now
+  # Emissions specifications
+  emission_factor: 0
+  emission_type: CO2_cc
+  capacity_factor: 0.9 #fix this to TC/kWyr
+  investment_lr: 0.8
+  fixed_cost_lr: 1
+
+h2_stor_geo_discharge:
+  # Technology specs: mode, commodities, description
+  description: hydrogen storage in salt caverns
+  mode: discharge
+  commodity:
+  # Commodities: inputs and outputs 
+    - input: 
+      - com_name: 
+        - hydrogen
+        - electr
+      - com_value: 
+        - 1.05
+        - 0.018
+      - com_level: 
+        - storage
+        - secondary
+    - output: 
+      - com_name: 
+        - hydrogen
+      - com_value: 
+        - 1
+      - com_level: 
+        - secondary
+  # Time specifications: lifetime, construction time
+  time: year
+  tec_lifetime: 40
+  construction_time: 1 # Random number of years for now -- CCF
+  # Units for cost and energy
+  unit: 
+    - cost: 'USD/kWa'
+    - energy: '-'
+  # Geographical specs: nodes selection, provinces
+  # Specify "all" below for all provinces in Canada to be selected, or "custom" for a sub-set of provinces
+  node_select: all
+  provinces: 
+    - Alberta
+    #- Saskatchewan
+  # Cost specifications: investment, fiixed, and variable
+  inv_cost_2020: 
+    - cost_level: primary
+    - cost_value: 64
+  fix_cost_2020: 
+    - cost_level: primary
+    - cost_value: 6.34 #12.68
+  var_cost_2020:
+    - cost_level: primary
+    - cost_value: 0 # example value for now
+  # Emissions specifications
+  emission_factor: 0
+  emission_type: CO2_cc
+  capacity_factor: 0.9 #fix this to TC/kWyr
+  investment_lr: 0.8
+  fixed_cost_lr: 1
