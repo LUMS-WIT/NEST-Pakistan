@@ -1,9 +1,0 @@
-LICENSE
-README.md
-setup.py
-messageix_pakistan.egg-info/PKG-INFO
-messageix_pakistan.egg-info/SOURCES.txt
-messageix_pakistan.egg-info/dependency_links.txt
-messageix_pakistan.egg-info/entry_points.txt
-messageix_pakistan.egg-info/requires.txt
-messageix_pakistan.egg-info/top_level.txt
