@@ -1,13 +1,14 @@
 import pandas as pd
 
-df_lc = pd.read_csv("../modelData/historicalData/ACT_ppl_low_carbon.csv")
-df_fossil = pd.read_csv("../modelData/historicalData/ACT_ppl_fossil.csv")
+df_lc = pd.read_csv("../modelData/historicalData/ACT_ppl_low_carbon_v3.csv")
+df_fossil = pd.read_csv("../modelData/historicalData/ACT_ppl_fossil_v3.csv")
+df_hydro = pd.read_csv("../modelData/historicalData/ACT_ppl_hydro_v3.csv")
 
-df_all = pd.concat([df_lc, df_fossil], ignore_index=True)
+df_all = pd.concat([df_lc, df_fossil, df_hydro], ignore_index=True)
 
 low_carbon_tecs = df_lc["tec"].unique()
-hydro_tecs = ["hydro_hc", "hydro_lc"]
-fossil_tecs = df_fossil["tec"].unique().tolist()
+fossil_tecs = df_fossil["tec"].unique()
+hydro_tecs = df_hydro["tec"].unique()
 
 df_all['value'] = df_all['level']
 
