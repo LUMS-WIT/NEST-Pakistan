@@ -35,6 +35,9 @@ def adjust_coal(msgSC):
                             mode="M1", time="year", value = 0, unit = "GWa")
     msgSC.add_par("bound_activity_up", igcc_bau)
 
+    imp_gau = make_df("growth_activity_up", node_loc = "R12_PAK", technology = "coal_imp", 
+                            year_act= 2025, time="year", value = 0.06, unit = "%")
+
     
 
 def adjust_oil(msgSC):

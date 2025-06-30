@@ -43,34 +43,6 @@ def insert_history(msgSC, year, tecs):
     )
     msgSC.add_par("historical_activity", {"node_loc": "R12_PAK", "mode": "M1", "time": "year", "year_act": year, "technology": merged["technology"], "value": merged["value_year"], "unit": "GWa"})
 
-def insert_solar_distribution(msgSC):
-    """
-    ratios taken from https://www.iea.org/data-and-statistics/data-tools/renewable-energy-progress-tracker
-    we look at cumulative capacity in 2025 since catering to yearly or 5 year ratios is a bit more challenging
-    """
-    
-    hist_cap = msgSC.par("bound_new_capacity_lo", {"technology":["solar_res_hist_2010", "solar_res_hist_2015", "solar_res_hist_2020", "solar_res_hist_2025"]})
-    total_dist_cap = hist_cap["value"].sum() * 0.37
-    hist_cap_2025 = total_dist_cap + hist_cap[hist_cap["year_vtg"] == 2025]["value"]
-    to_remove = hist_cap[hist_cap["year_vtg"] == 2025]
-    msgSC.remove_par("bound_new_capacity_lo", to_remove)
-    bncl_res = make_df("bound_new_capacity_lo", node_loc="R12_PAK", technology="solar_res_hist_2025", year_vtg=2025, value=hist_cap_2025, unit="GW")
-    msgSC.add_par("bound_new_capacity_lo", bncl_res)
-
-    bncl_pv = msgSC.par("bound_new_capacity_up", {"technology":"solar_pv_ppl", "year_vtg":2025})
-    msgSC.remove_par("bound_new_capacity_up", bncl_pv)
-    bncl_pv = make_df("bound_new_capacity_lo", node_loc="R12_PAK", technology="solar_pv_ppl", year_vtg=2025, value=hist_cap_2025, unit="GW")
-    msgSC.add_par("bound_new_capacity_lo", bncl_pv)
-
-    bncu = msgSC.par("bound_new_capacity_up", {"technology":["solar_pv_ppl", "solar_res_hist_2025"], "year_vtg":2025})
-    msgSC.remove_par("bound_new_capacity_up", bncu)
-    bncu_res = make_df("bound_new_capacity_up", node_loc="R12_PAK", technology="solar_res_hist_2025", year_vtg=2025, value=hist_cap_2025*1.005, unit="GW")
-    msgSC.add_par("bound_new_capacity_up", bncu_res)
-
-    bncu_pv = make_df("bound_new_capacity_up", node_loc="R12_PAK", technology="solar_pv_ppl", year_vtg=2025, value=hist_cap_2025*1.005, unit="GW")
-    msgSC.add_par("bound_new_capacity_up", bncu_pv)
-
-
 def calibrate_solar(msgSC):
     """
     we recaluculate new capacity bounds for 2025 due to changing/increasing trends
@@ -176,14 +148,15 @@ def calibrate_solar(msgSC):
     act_2025 = cf_2025 * hist_2025[["value"]].sum().values[0]
 
     # adding upper and lower bounds for activity
+    year_all = list(range(2020, 2065, 5)) + [2070] + list(range(2025, 2065, 5)) + [2070]
     bal_20_25 = pd.DataFrame(
         {
             "node_loc": "R12_PAK",
-            "technology": ["solar_res_hist_2020", "solar_res_hist_2025"],
-            "year_act": [2020, 2025],
+            "technology": ["solar_res_hist_2020"]*10 + ["solar_res_hist_2025"]*9,
+            "year_act": year_all,
             "mode":"M1",
             "time":"year",
-            "value": [act_2020, act_2025],
+            "value": [act_2020]*10 + [act_2025]*9,
             "unit": "GWa",
         }
     )
@@ -192,15 +165,23 @@ def calibrate_solar(msgSC):
     bau_20_25 = pd.DataFrame(
         {
             "node_loc": "R12_PAK",
-            "technology": ["solar_res_hist_2020", "solar_res_hist_2025"],
-            "year_act": [2020, 2025],
+            "technology": ["solar_res_hist_2020"]*10 + ["solar_res_hist_2025"]*9,
+            "year_act": year_all,
             "mode":"M1",
             "time":"year",
-            "value": [act_2020*1.0005, act_2025*1.0005],
+            "value": [act_2020*1.0005]*10 + [act_2025*1.0005]*9,
             "unit": "GWa",
         }
     )
     msgSC.add_par("bound_activity_up", bau_20_25)
+
+def calibrate_coal(msgSC):
+    """
+    historical activity for coal_adv has non zero values in 1990 and 1995 despite zero historical new capacity
+    we will remove the historical activity values
+    """
+    hist_act_remove = msgSC.par("historical_activity", {"technology":"coal_adv", "year_act":["1990", "1995"]}) # df to be removed
+    msgSC.remove_par("historical_activity", hist_act_remove)
 
 
 def modify_last_year(msgSC, new_last_yr):
