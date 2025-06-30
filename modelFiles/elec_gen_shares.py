@@ -6,27 +6,33 @@ def generation_shares(msgSC):
 
     # add to and remove from technologies powerplant_low-carbon and powerplant_fossil in cat_tec
     elec_gen = msgSC.set("cat_tec", {"type_tec": ["powerplant_low-carbon", "powerplant_fossil"]})
-    elec_gen_remove = elec_gen[elec_gen["technology"].str.contains("scr|hpl|htfc|sm._ppl|curtailment|cv|solar_pv_ppl|stor_ppl|geo_ppl|wind_ppl|wind_ppf|hydro", regex=True)]
+    elec_gen_remove = elec_gen[elec_gen["technology"].str.contains("scr|hpl|htfc|sm._ppl|curtailment|cv|solar_pv_ppl|stor_ppl|geo_ppl|wind_ppl|wind_ppf|hydro|nuc", regex=True)]
     msgSC.remove_set("cat_tec", elec_gen_remove)
     elec_gen_lc_add = make_df("cat_tec", type_tec="powerplant_low-carbon", technology=["solar_res_hist_2000", "solar_res_hist_2005", "solar_res_hist_2010", "solar_res_hist_2015", "solar_res_hist_2025",
                                                             "wind_res_hist_2000", "wind_res_hist_2005", "wind_res_hist_2010", "wind_res_hist_2015", "wind_res_hist_2020", 
                                                             "wind_res_hist_2025", "wind_ref_hist_2000", "wind_ref_hist_2005", "wind_ref_hist_2010", "wind_ref_hist_2015", 
                                                             "wind_ref_hist_2020", "wind_ref_hist_2025", "csp_sm1_res_hist_2015", "csp_sm1_res_hist_2020", "csp_sm1_res_hist_2010",])
     msgSC.add_set("cat_tec", elec_gen_lc_add)
+    # elec_gen_fossil_add = make_df("cat_tec", type_tec="powerplant_fossil", technology="igcc")
+    # msgSC.add_set("cat_tec", elec_gen_fossil_add)
 
     # define new type_tec called hydro
     hydro_total = make_df("cat_tec", type_tec="powerplant_hydro", technology= ["hydro_lc", "hydro_hc"])
     msgSC.add_set("cat_tec", hydro_total)
 
+    # define new type_tec called nuclear
+    nuclear_total = make_df("cat_tec", type_tec="powerplant_nuclear", technology=["nuc_lc", "nuc_hc"])
+    msgSC.add_set("cat_tec", nuclear_total)    
+
     # define new type_tec called powerplant_total
-    ppl_total = msgSC.set("cat_tec", {"type_tec":["powerplant_low-carbon", "powerplant_fossil", "powerplant_hydro"]})["technology"]
+    ppl_total = msgSC.set("cat_tec", {"type_tec":["powerplant_low-carbon", "powerplant_fossil", "powerplant_hydro", "powerplant_nuclear"]})["technology"]
     to_add_ppl_total = make_df("cat_tec", type_tec="powerplant_total", technology=ppl_total)
     msgSC.add_set("cat_tec", to_add_ppl_total)
 
     # mapping and then adding shares for low carbon technologies
     _add_share_mappings(msgSC, "powerplant_low-carbon", "powerplant_total")
-    lc_2025 = share_commodity_lo_df("powerplant_low-carbon", '2025', 0.22) # pakistan economic survey 23-24
-    lc_post_2025 = [0.2600] + ([0.31]*7) # igcep 24-34
+    lc_2025 = share_commodity_lo_df("powerplant_low-carbon", '2025', 0.0420) # pakistan economic survey 23-24
+    lc_post_2025 = [0.13 + 0.13] + ([0.16 + 0.15]*7) # igcep 24-34
     lc_shares = pd.DataFrame(
         {
             "shares":"powerplant_low-carbon",
@@ -57,7 +63,7 @@ def generation_shares(msgSC):
     )
 
     fossil_shares = pd.concat([fossil_25, fossil_30, fossil_35, fossil_shares], ignore_index=True)
-    msgSC.add_par('share_commodity_up', fossil_shares)
+    # msgSC.add_par('share_commodity_up', fossil_shares)
 
     # mapping and then adding shares for hydropower technologies
     _add_share_mappings(msgSC, "powerplant_hydro", "powerplant_total")
@@ -75,6 +81,23 @@ def generation_shares(msgSC):
     )
     hydro_shares = pd.concat([hydro_2025, hydro_shares], ignore_index=True)
     msgSC.add_par("share_commodity_lo", hydro_shares)
+
+    # mapping and then adding shares for nuclear technologies
+    _add_share_mappings(msgSC, "powerplant_nuclear", "powerplant_total")
+    nuclear_2025 = share_commodity_lo_df("powerplant_nuclear", '2025', 0.18) # pakistan economic survey 23-24
+    nuclear_post_2025 = [0.13] + ([0.15]*7) # igcep 24-34
+    nuclear_shares = pd.DataFrame(
+        {
+            "shares":"powerplant_nuclear",
+            "node_share":"R12_PAK",
+            "year_act":[2030, 2035, 2040, 2045, 2050, 2055, 2060, 2070],
+            "value": nuclear_post_2025,
+            "time":"year",
+            "unit":"-",
+        }
+    )
+    nuclear_shares = pd.concat([nuclear_2025, nuclear_shares], ignore_index=True)
+    # msgSC.add_par("share_commodity_lo", nuclear_shares)
 
 def share_commodity_lo_df(shares, year_act, value):
     return make_df(
@@ -100,11 +123,13 @@ def share_commodity_up_df(shares, year_act, value):
 
 def _add_initial_sets(msgSC):
     msgSC.add_set('type_tec', 'powerplant_hydro')
+    msgSC.add_set('type_tec', 'powerplant_nuclear')
     msgSC.add_set('type_tec', 'powerplant_total')
 
     msgSC.add_set('shares', 'powerplant_low-carbon')
     msgSC.add_set('shares', 'powerplant_fossil')
     msgSC.add_set('shares', 'powerplant_hydro')
+    msgSC.add_set('shares', 'powerplant_nuclear')
     msgSC.add_set('shares', 'powerplant_total')
 
 def _add_share_mappings(msgSC, shares: str, total: str):

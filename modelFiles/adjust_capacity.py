@@ -42,18 +42,24 @@ def adjust_hydro(msgSC):
     msgSC.remove_par("growth_new_capacity_up", gncu)
 
 def adjust_coal(msgSC):
-    coal_tecs = ["coal_adv", "coal_adv_ccs", "coal_hpl", "coal_ppl", "coal_ppl_u"]
-    gau = msgSC.par("growth_new_capacity_up", {"technology":["coal_adv", "coal_adv_ccs"]})
-    msgSC.remove_par("growth_new_capacity_up", gau)
-    for tec in coal_tecs:
-        coal_gau = make_df("growth_new_capacity_up", node_loc = "R12_PAK", technology = tec, 
-                                year_vtg= [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2070],
-                                value = 0.02, unit = "%")
-        msgSC.add_par("growth_new_capacity_up", coal_gau)
+    # coal_tecs = ["coal_adv", "coal_adv_ccs", "coal_ppl", "coal_ppl_u"]
+    # gau = msgSC.par("growth_new_capacity_up", {"technology":["coal_adv", "coal_adv_ccs"]})
+    # msgSC.remove_par("growth_new_capacity_up", gau)
+    # for tec in coal_tecs:
+    #     coal_gau = make_df("growth_new_capacity_up", node_loc = "R12_PAK", technology = tec, 
+    #                             year_vtg= [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2070],
+    #                             value = 0.02, unit = "%")
+    #     msgSC.add_par("growth_new_capacity_up", coal_gau)
 
     # igcc_bncu = make_df("bound_new_capacity_up", node_loc = "R12_PAK", technology = "igcc", 
     #                         year_vtg = 2025, value = 0, unit = "GW")
     # msgSC.add_par("bound_new_capacity_up", igcc_bncu)
+
+    bncl = msgSC.par("bound_total_capacity_lo", {"technology":"coal_adv"})
+    msgSC.remove_par("bound_total_capacity_lo", bncl)
+
+    bncu = msgSC.par("bound_total_capacity_up", {"technology":"coal_adv"})
+    msgSC.remove_par("bound_total_capacity_up", bncu)
 
 def adjust_solar(msgSC):
     solar_tecs = ["solar_pv_ppl"]
@@ -78,9 +84,9 @@ def adjust_wind(msgSC):
     # msgSC.remove_par("growth_new_capacity_up", gncu)
 
 def adjust_capacity(msgSC):
-    adjust_gas(msgSC)
-    adjust_oil(msgSC)
-    adjust_hydro(msgSC)
+    # adjust_gas(msgSC)
+    # adjust_oil(msgSC)
+    # adjust_hydro(msgSC)
     adjust_coal(msgSC)
-    adjust_solar(msgSC)
+    # adjust_solar(msgSC)
     # adjust_wind(msgSC)
