@@ -4,18 +4,18 @@ from message_ix import make_df
 
 def insert_history(msgSC, year, tecs):
 
-    # adding bound_activity_lo as historical_activity
-    bound_activity_lo_year = msgSC.par('bound_activity_lo', {'year_act': year})
-    bound_new_capacity_lo_year = msgSC.par('bound_new_capacity_lo', {'year_vtg': year})
+    # adding bound_activity_lo and bound_new_capacity_lo as historical_activity and historical_new_capacity, respectively, for specified year
+    bound_activity_lo_2020 = msgSC.par('bound_activity_lo', {'year_act': year})
+    bound_new_capacity_lo_2020 = msgSC.par('bound_new_capacity_lo', {'year_vtg': year})
 
-    bound_activity_lo_year = bound_activity_lo_year[np.isfinite(bound_activity_lo_year['value'])]
-    bound_new_capacity_lo_year = bound_new_capacity_lo_year[np.isfinite(bound_new_capacity_lo_year['value'])]
+    bound_activity_lo_2020 = bound_activity_lo_2020[np.isfinite(bound_activity_lo_2020['value'])]
+    bound_new_capacity_lo_2020 = bound_new_capacity_lo_2020[np.isfinite(bound_new_capacity_lo_2020['value'])]
     
-    hist_act = bound_activity_lo_year.copy()
+    hist_act = bound_activity_lo_2020.copy()
     hist_act['unit'] = 'GWa'
     msgSC.add_par('historical_activity', hist_act)
 
-    hist_cap = bound_new_capacity_lo_year.copy()
+    hist_cap = bound_new_capacity_lo_2020.copy()
     hist_cap['unit'] = 'GW'
     msgSC.add_par('historical_new_capacity', hist_cap)
 
@@ -127,13 +127,13 @@ def calibrate_solar(msgSC):
     bncu_remove = bound_new_cap_up[bound_new_cap_up["year_vtg"].isin([2020, 2025])]
     msgSC.remove_par("bound_new_capacity_up", bncu_remove)
 
-    # adding 1.0005 times the lower bound as upper bound
+    # adding 1.005 times the lower bound as upper bound
     bncu = pd.DataFrame(
         {
             "node_loc": ["R12_PAK"] * 4,
             "technology": ["solar_res_hist_2020", "solar_res_hist_2025", "solar_pv_ppl", "solar_pv_ppl"],
             "year_vtg": [2020, 2025, 2020, 2025],
-            "value": [avg_2020*1.0005, avg_2025*1.0005, avg_2020*1.0005, avg_2025*1.0005],
+            "value": [avg_2020*1.005, avg_2025*1.005, avg_2020*1.005, avg_2025*1.005],
             "unit": ["GW"] * 4
         }
     )
@@ -169,7 +169,7 @@ def calibrate_solar(msgSC):
             "year_act": year_all,
             "mode":"M1",
             "time":"year",
-            "value": [act_2020*1.0005]*10 + [act_2025*1.0005]*9,
+            "value": [act_2020*1.005]*10 + [act_2025*1.005]*9,
             "unit": "GWa",
         }
     )

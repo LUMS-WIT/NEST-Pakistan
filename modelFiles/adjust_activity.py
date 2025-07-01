@@ -1,4 +1,5 @@
 from message_ix import make_df
+import pandas as pd
 
 def adjust_hydro(msgSC):
     hydro_tecs = ["hydro_lc", "hydro_hc"]
@@ -30,14 +31,18 @@ def adjust_coal(msgSC):
     #                             time="year", mode="M1", value = 0, unit = "GWa")
     # msgSC.add_par("bound_activity_up", syn_liq_up)
 
-    igcc_bau = make_df("bound_activity_up", node_loc = "R12_PAK", technology = "igcc", 
-                            year_act= [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2070],
-                            mode="M1", time="year", value = 0, unit = "GWa")
-    msgSC.add_par("bound_activity_up", igcc_bau)
+    # igcc_bau = make_df("bound_activity_up", node_loc = "R12_PAK", technology = "igcc", 
+    #                         year_act= [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2070],
+    #                         mode="M1", time="year", value = 0, unit = "GWa")
+    # msgSC.add_par("bound_activity_up", igcc_bau)
 
-    imp_gau = make_df("growth_activity_up", node_loc = "R12_PAK", technology = "coal_imp", 
-                            year_act= 2025, time="year", value = 0.06, unit = "%")
+    # gau = msgSC.par("growth_activity_up", {"technology":"coal_imp", "year_act":[2025, 2030]})
+    # msgSC.remove_par("growth_activity_up", gau)
 
+    bound_act_up_path = "D:/COMMITTED/Models/NEST-Pakistan/modelData/historicalData/bound_activity_up.xlsx"
+    imp_bau = pd.read_excel(bound_act_up_path, sheet_name="coal_imp")
+    msgSC.add_par("bound_activity_up", imp_bau)
+    
     
 
 def adjust_oil(msgSC):
@@ -80,6 +85,6 @@ def adjust_transport(msgSC):
 
 def adjust_activity(msgSC):
     # adjust_hydro(msgSC)
-    # adjust_coal(msgSC)
+    adjust_coal(msgSC)
     # adjust_solar(msgSC)
     # adjust_transport(msgSC)
