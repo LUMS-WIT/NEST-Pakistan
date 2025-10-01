@@ -31,8 +31,10 @@ def generation_shares(msgSC):
 
     # mapping and then adding shares for low carbon technologies
     _add_share_mappings(msgSC, "powerplant_low-carbon", "powerplant_total")
-    lc_2025 = share_commodity_lo_df("powerplant_low-carbon", '2025', 0.0420) # pakistan economic survey 23-24
-    lc_post_2025 = [0.13 + 0.13] + ([0.16 + 0.15]*7) # igcep 24-34
+    # lc_2025 = share_commodity_lo_df("powerplant_low-carbon", '2025', 0.0420) # pakistan economic survey 23-24
+    # lc_post_2025 = [0.13 + 0.13] + ([0.16 + 0.15]*7) # igcep 24-34
+    lc_2025 = share_commodity_lo_df("powerplant_low-carbon", '2025', 0.22) # pakistan economic survey 23-24
+    lc_post_2025 = [0.2600] + ([0.31]*7) # igcep 24-34
     lc_shares = pd.DataFrame(
         {
             "shares":"powerplant_low-carbon",

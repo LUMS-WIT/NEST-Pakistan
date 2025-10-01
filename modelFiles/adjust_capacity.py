@@ -55,11 +55,11 @@ def adjust_coal(msgSC):
     #                         year_vtg = 2025, value = 0, unit = "GW")
     # msgSC.add_par("bound_new_capacity_up", igcc_bncu)
 
-    bncl = msgSC.par("bound_total_capacity_lo", {"technology":"coal_adv"})
-    msgSC.remove_par("bound_total_capacity_lo", bncl)
+    btcl = msgSC.par("bound_total_capacity_lo", {"technology":"coal_adv"})
+    msgSC.remove_par("bound_total_capacity_lo", btcl)
 
-    bncu = msgSC.par("bound_total_capacity_up", {"technology":"coal_adv"})
-    msgSC.remove_par("bound_total_capacity_up", bncu)
+    btcu = msgSC.par("bound_total_capacity_up", {"technology":"coal_adv"})
+    msgSC.remove_par("bound_total_capacity_up", btcu)
 
 def adjust_solar(msgSC):
     solar_tecs = ["solar_pv_ppl"]

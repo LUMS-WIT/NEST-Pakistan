@@ -4,6 +4,13 @@ from message_ix import make_df
 
 def insert_history(msgSC, year, tecs):
 
+    # calibrating some of the bound_activity_lo values
+    bal_2020_remove = msgSC.par('bound_activity_lo', {'year_act': year, "technology":"bio_ppl"})
+    msgSC.remove_par("bound_activity_lo", bal_2020_remove)
+    bal_2020_BE = 0.06443607306
+    bal_2020_BE_df = make_df("bound_activity_lo", node_loc="R12_PAK", technology="bio_ppl", year_act=year, mode="M1", time="year", value=bal_2020_BE, unit="GWa")
+    msgSC.add_par("bound_activity_lo", bal_2020_BE_df)
+
     # adding bound_activity_lo and bound_new_capacity_lo as historical_activity and historical_new_capacity, respectively, for specified year
     bound_activity_lo_2020 = msgSC.par('bound_activity_lo', {'year_act': year})
     bound_new_capacity_lo_2020 = msgSC.par('bound_new_capacity_lo', {'year_vtg': year})
@@ -11,37 +18,52 @@ def insert_history(msgSC, year, tecs):
     bound_activity_lo_2020 = bound_activity_lo_2020[np.isfinite(bound_activity_lo_2020['value'])]
     bound_new_capacity_lo_2020 = bound_new_capacity_lo_2020[np.isfinite(bound_new_capacity_lo_2020['value'])]
     
-    hist_act = bound_activity_lo_2020.copy()
-    hist_act['unit'] = 'GWa'
-    msgSC.add_par('historical_activity', hist_act)
+    bound_activity_lo_2020['unit'] = 'GWa'
+    msgSC.add_par('historical_activity', bound_activity_lo_2020)
 
-    hist_cap = bound_new_capacity_lo_2020.copy()
-    hist_cap['unit'] = 'GW'
-    msgSC.add_par('historical_new_capacity', hist_cap)
+    bound_new_capacity_lo_2020['unit'] = 'GW'
+    msgSC.add_par('historical_new_capacity', bound_new_capacity_lo_2020)
 
-    act_2010 = msgSC.par("historical_activity", {"year_act": 2010, "technology": tecs})
-    act_2015 = msgSC.par("historical_activity", {"year_act": 2015, "technology": tecs})
+    bound_activity_lo_2020['unit'] = 'GWa'
+    msgSC.add_par('historical_activity', bound_activity_lo_2020)
 
-    merged = pd.merge(
-        act_2010[["technology", "value"]],
-        act_2015[["technology", "value"]],
-        on="technology",
-        suffixes=('_2010', '_2015')
-    )
+    bound_new_capacity_lo_2020['unit'] = 'GW'
+    msgSC.add_par('historical_new_capacity', bound_new_capacity_lo_2020)
 
     # catering to tecs which do not have bound_activity_lo values
-    merged["growth"] = (merged["value_2015"] - merged["value_2010"]) / merged["value_2010"]
+    act_05_10_15 = msgSC.par("historical_activity", {"year_act": [2000, 2005, 2010, 2015], "technology": tecs})
+    hist_act_2020 = []
 
-    merged["value_year"] = np.where(
-        merged["technology"].isin(["oil_imp", "loil_imp"]),
-            merged["value_2015"] * (1 + 0.3 * merged["growth"]),
-        # np.where(
-        #     merged["technology"] == "coal_imp",
-        #         merged["value_2015"] * 2,
-            merged["value_2015"] * (1.3 + merged["growth"])
-        # )
-    )
-    msgSC.add_par("historical_activity", {"node_loc": "R12_PAK", "mode": "M1", "time": "year", "year_act": year, "technology": merged["technology"], "value": merged["value_year"], "unit": "GWa"})
+    for tec in act_05_10_15['technology'].unique():
+        ha_imp_df = act_05_10_15[act_05_10_15['technology'] == tec].sort_values('year_act')
+        v2000, v2005, v2010, v2015 = ha_imp_df['value'].values
+        # calculate growth rates
+        growth_1 = (v2005 - v2000) / v2000
+        growth_2 = (v2010 - v2005) / v2005
+        growth_3 = (v2015 - v2010) / v2010
+
+        if tec == "loil_imp":
+            avg_growth = (growth_1 + growth_2 + growth_3) / 3
+        else:
+            avg_growth = (growth_2 + growth_3) / 2
+
+        v2020 = v2015 * (1 + avg_growth)
+
+        # new row df
+        imp_2020 = {
+            'node_loc': 'R12_PAK',
+            'technology': tec,
+            'year_act': 2020,
+            'mode': 'M1',
+            'time': 'year',
+            'value': v2020,
+            'unit': 'GWa'
+        }
+        hist_act_2020.append(imp_2020)
+
+    ha_2020_df = pd.DataFrame(hist_act_2020)
+
+    msgSC.add_par("historical_activity", ha_2020_df)
 
 def calibrate_solar(msgSC):
     """
@@ -133,11 +155,18 @@ def calibrate_solar(msgSC):
             "node_loc": ["R12_PAK"] * 4,
             "technology": ["solar_res_hist_2020", "solar_res_hist_2025", "solar_pv_ppl", "solar_pv_ppl"],
             "year_vtg": [2020, 2025, 2020, 2025],
-            "value": [avg_2020*1.005, avg_2025*1.005, avg_2020*1.005, avg_2025*1.005],
+            "value": [avg_2020*1.005, avg_2025*1.05, avg_2020*1.005, avg_2025*1.05],
             "unit": ["GW"] * 4
         }
     )
     msgSC.add_par("bound_new_capacity_up", bncu)
+
+    # removal of previous generation data
+    bound_act_up_remove = msgSC.par("bound_activity_up", {"technology":["solar_res_hist_2020", "solar_res_hist_2025"]})
+    msgSC.remove_par("bound_activity_up", bound_act_up_remove)
+
+    bound_act_lo_remove = msgSC.par("bound_activity_lo", {"technology":["solar_res_hist_2020", "solar_res_hist_2025"]})
+    msgSC.remove_par("bound_activity_lo", bound_act_lo_remove)
 
     # calculation of generation data according to the projection capacity values and cf values in the model data
     # act = cf * cap
@@ -169,11 +198,12 @@ def calibrate_solar(msgSC):
             "year_act": year_all,
             "mode":"M1",
             "time":"year",
-            "value": [act_2020*1.005]*10 + [act_2025*1.005]*9,
+            "value": [act_2020*1.005]*10 + [act_2025*1.05]*9,
             "unit": "GWa",
         }
     )
     msgSC.add_par("bound_activity_up", bau_20_25)
+
 
 def calibrate_coal(msgSC):
     """
@@ -182,6 +212,9 @@ def calibrate_coal(msgSC):
     """
     hist_act_remove = msgSC.par("historical_activity", {"technology":"coal_adv", "year_act":["1990", "1995"]}) # df to be removed
     msgSC.remove_par("historical_activity", hist_act_remove)
+
+    hist_act = make_df("historical_activity", node_loc="R12_PAK", technology="coal_adv", year_act=["1990", "1995"], mode="M1", time="year", value=[0, 0], unit="GWa" )
+    msgSC.add_par("historical_activity", hist_act)
 
 
 def modify_last_year(msgSC, new_last_yr):

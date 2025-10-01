@@ -12,6 +12,7 @@ def adjust_hydro(msgSC):
         msgSC.add_par("growth_activity_lo", hydro_gal)
 
 def adjust_coal(msgSC):
+    pass
     # coal_tecs = ["coal_adv", "coal_adv_ccs", "coal_hpl", "coal_ppl", "coal_ppl_u"]
     # gau = msgSC.par("growth_activity_up", {"technology":["coal_adv", "coal_adv_ccs", "coal_imp"]})
     # msgSC.remove_par("growth_activity_up", gau)
@@ -39,9 +40,6 @@ def adjust_coal(msgSC):
     # gau = msgSC.par("growth_activity_up", {"technology":"coal_imp", "year_act":[2025, 2030]})
     # msgSC.remove_par("growth_activity_up", gau)
 
-    bound_act_up_path = "D:/COMMITTED/Models/NEST-Pakistan/modelData/historicalData/bound_activity_up.xlsx"
-    imp_bau = pd.read_excel(bound_act_up_path, sheet_name="coal_imp")
-    msgSC.add_par("bound_activity_up", imp_bau)
     
     
 
