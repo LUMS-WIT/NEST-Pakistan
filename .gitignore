@@ -3,3 +3,9 @@
 *.cypython
 *.pyc
 *-checkpoint.ipynb
+
+# Sphinx documentation build outputs
+docs/_build/
+docs/_static/
+docs/_templates/
+docs/.doctrees/
