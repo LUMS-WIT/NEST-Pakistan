@@ -904,7 +904,7 @@ def _make_emptydf(tec, vintage=None, grade=None, units="GWa"):
         dfs.append(df)
     df = pd.concat(dfs, sort=True)
     if "Vintage" in df.columns:
-        df.loc[:, "Vintage"] = df.loc[:, "Vintage"].astype("object")
+        df["Vintage"] = df["Vintage"].astype(object)
     return df.sort_index()
 
 
