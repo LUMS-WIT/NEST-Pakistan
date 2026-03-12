@@ -120,7 +120,7 @@ def report(
     model_nm = model_out if model_out else scen.model
     scen_nm = scenario_out if scenario_out else scen.scenario
     run_history = ref_sol
-    path = package_data_path("report", "legacy")
+    path = Path(__file__).resolve().parents[2] / "data" / "legacy"
 
     # ----------------------------
     # Read reporting configuration

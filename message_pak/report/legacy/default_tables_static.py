@@ -5149,7 +5149,7 @@ def retr_pe(units, method=None):
     # -------------------
 
     vars["Coal"] = (
-        pp.out(
+        pp.inp(
             ["coal_extr_ch4", "coal_extr", "lignite_extr", "coal_imp"],
             units,
             inpfilter={"commodity": ["coal", "lignite"]},
