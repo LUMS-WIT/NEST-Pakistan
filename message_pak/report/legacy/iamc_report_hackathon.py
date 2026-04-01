@@ -260,7 +260,7 @@ def report(
     # Based on the default config, populate func_dict, which
     # has all the function required for running the reporting.
     # DEFAULT_table_def = "model.report.legacy.default_tables"
-    DEFAULT_table_def = "model.report.legacy.default_tables"
+    DEFAULT_table_def = "report.legacy.default_tables"
     dflt_tbl = __import__(DEFAULT_table_def, fromlist=[None])
     dflt_tbl.pp = pp
     dflt_tbl.mu = mu
