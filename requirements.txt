@@ -1,0 +1,16 @@
+# Python dependencies for Multi-IAM-Pakistan (MESSAGEix-Pakistan)
+# Install with: pip install -r requirements.txt
+#
+# NOTE: GAMS is required separately and is NOT a pip package. Install GAMS
+# (version 40 was used for this work) with a valid licence before solving.
+
+message_ix==3.9.0
+ixmp==3.9.0
+
+pandas==2.3.3
+numpy==2.4.4
+openpyxl==3.1.5
+PyYAML==6.0.3
+pyam-iamc==3.3.0
+message-ix-models==2025.1.10
+
