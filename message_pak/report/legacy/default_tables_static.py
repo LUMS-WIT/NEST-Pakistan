@@ -4922,7 +4922,7 @@ def retr_SE_elecgen(units):
 
     _Wind_res_act = pp.out(
         [
-            "wind_ppf",
+            "wind_ppl",
             "wind_res1",
             "wind_res2",
             "wind_res3",
@@ -4937,7 +4937,7 @@ def retr_SE_elecgen(units):
 
     _Wind_ref_act = pp.out(
         [
-            "wind_ppl",
+            "wind_ppf",
             "wind_ref1",
             "wind_ref2",
             "wind_ref3",
@@ -4961,13 +4961,9 @@ def retr_SE_elecgen(units):
         _Wind_res_act / (_Wind_res_act + _Wind_ref_act)
     ).fillna(0)
 
-    _Wind_onshore = _Wind_ref_act
-
     _Wind_offshore = _Wind_ref_act - _Wind_curt_inp * (
         _Wind_ref_act / (_Wind_res_act + _Wind_ref_act)
     ).fillna(0)
-
-    _Wind_offshore = _Wind_res_act
 
     _Wind = _Wind_onshore + _Wind_offshore
 
@@ -5422,27 +5418,27 @@ def retr_pe(units, method=None):
     # Primary Energy Wind
     # -------------------
 
-    vars["Wind"] = pp.inp(
+    vars["Wind"] = pp.out(
         [
-            # "wind_res1",
-            # "wind_res2",
-            # "wind_res3",
-            # "wind_res4",
-            # "wind_ref1",
-            # "wind_ref2",
-            # "wind_ref3",
-            # "wind_ref4",
-            # "wind_ref5",
-            # "wind_res_hist_2005",
-            # "wind_res_hist_2010",
-            # "wind_res_hist_2015",
-            # "wind_res_hist_2020",
-            # "wind_ref_hist_2005",
-            # "wind_ref_hist_2010",
-            # "wind_ref_hist_2015",
-            # "wind_ref_hist_2020",
             "wind_ppl",
             "wind_ppf",
+            "wind_res1",
+            "wind_res2",
+            "wind_res3",
+            "wind_res4",
+            "wind_ref1",
+            "wind_ref2",
+            "wind_ref3",
+            "wind_ref4",
+            "wind_ref5",
+            "wind_res_hist_2005",
+            "wind_res_hist_2010",
+            "wind_res_hist_2015",
+            "wind_res_hist_2020",
+            "wind_ref_hist_2005",
+            "wind_ref_hist_2010",
+            "wind_ref_hist_2015",
+            "wind_ref_hist_2020",
         ],
         units,
     )
@@ -6477,9 +6473,9 @@ def retr_ppl_parameters(prmfunc, units):
     vars["Electricity|Oil|w/o CCS|3"] = prmfunc("foil_ppl", units=units)
     vars["Electricity|Solar|CSP|1"] = prmfunc("csp_sm1_ppl", units=units)
     vars["Electricity|Solar|CSP|2"] = prmfunc("csp_sm3_ppl", units=units)
-    vars["Electricity|Solar|PV"] = prmfunc("solar_pv_ppl", units=units)
+    vars["Electricity|Solar|PV"] = prmfunc("solar_res1", units=units)
     vars["Electricity|Wind|Offshore"] = prmfunc("wind_ppf", units=units)
-    vars["Electricity|Wind|Onshore"] = prmfunc("wind_ppl", units=units)
+    vars["Electricity|Wind|Onshore"] = prmfunc("wind_res1", units=units)
     vars["Electricity|Storage"] = prmfunc("stor_ppl", units=units)
     vars["Gases|Biomass|w/o CCS"] = prmfunc("gas_bio", units=units)
     vars["Gases|Coal|w/o CCS"] = prmfunc("coal_gas", units=units)
@@ -6676,7 +6672,7 @@ def retr_ppl_opcost_parameters(prmfunc, units):
     )
 
     vars["Electricity|Solar|PV"] = prmfunc(
-        "solar_pv_ppl", units=units, group=group, formatting=formatting
+        "solar_res1", units=units, group=group, formatting=formatting
     )
 
     vars["Electricity|Wind|Offshore"] = prmfunc(
@@ -6684,7 +6680,7 @@ def retr_ppl_opcost_parameters(prmfunc, units):
     )
 
     vars["Electricity|Wind|Onshore"] = prmfunc(
-        "wind_ppl", units=units, group=group, formatting=formatting
+        "wind_res1", units=units, group=group, formatting=formatting
     )
 
     vars["Electricity|Storage"] = prmfunc(
@@ -7872,15 +7868,26 @@ def retr_supply_inv(units_energy, units_emi, units_ene_mdl):
     )
 
     _solar_pv_elec = pp.investment(
-        ["solar_pv_ppl", "solar_pv_I", "solar_pv_RC"], units=units_energy
+        [
+            "solar_pv_ppl", "solar_pv_I", "solar_pv_RC",
+            "solar_res1", "solar_res2", "solar_res3", "solar_res4",
+            "solar_res5", "solar_res6", "solar_res7", "solar_res8",
+        ],
+        units=units_energy,
     )
 
     _solar_th_elec = pp.investment(["csp_sm1_ppl", "csp_sm3_ppl"], units=units_energy)
 
     vars["Electricity|Solar|PV"] = _solar_pv_elec
     vars["Electricity|Solar|CSP"] = _solar_th_elec
-    vars["Electricity|Wind|Onshore"] = pp.investment(["wind_ppl"], units=units_energy)
-    vars["Electricity|Wind|Offshore"] = pp.investment(["wind_ppf"], units=units_energy)
+    vars["Electricity|Wind|Onshore"] = pp.investment(
+        ["wind_ppl", "wind_res1", "wind_res2", "wind_res3", "wind_res4"],
+        units=units_energy,
+    )
+    vars["Electricity|Wind|Offshore"] = pp.investment(
+        ["wind_ppf", "wind_ref1", "wind_ref2", "wind_ref3", "wind_ref4", "wind_ref5"],
+        units=units_energy,
+    )
 
     # -------------------
     # Electricity Nuclear
