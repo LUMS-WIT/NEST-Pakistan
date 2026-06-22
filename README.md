@@ -1,9 +1,9 @@
-This repository contains the integrated assessment model setups used to develop the scenarios informing the study *Decarbonization Pathways and Equity Implications of Pakistan's Climate Ambition*. 
+This repository contains the integrated assessment model setups used to develop the scenarios informing the study *Decarbonization Pathways and Equity Implications of Pakistan's Climate Ambition*.
 
 ## Repository structure
 
 ```
-Multi-IAM-Pakistan/
+NEST-Pakistan/
 ├── MESSAGEix-Pakistan/
 │   ├── data/
 │   │   ├── MESSAGEix-Pakistan-CurrentMeasures-SSP2.xlsx   # CM scenario input
@@ -17,6 +17,7 @@ Multi-IAM-Pakistan/
 │   │   ├── ndc-c.ipynb
 │   │   └── net-zero.ipynb
 │   ├── scripts/
+│   │   ├── add_rooftop_solar_pv.py                        # add rooftop solar PV technology
 │   │   ├── calibrate_t_d.py                               # historical-activity calibration for transmission/distribution technologies
 │   │   ├── reserve_margin.py                              # reserve-margin (res_marg) constraint on elec_t_d
 │   │   └── emissions.py                                   # emission-bounds for NDC-U, NDC-C and Net Zero
@@ -24,12 +25,12 @@ Multi-IAM-Pakistan/
 │   │   ├── __init__.py
 │   │   └── legacy/                                        # inherited MESSAGEix-GLOBIOM ENGAGE reporting code (IAMC output)
 │   └── output/                                            # generated IAMC report files (timestamped)
-└── GCAM-Pakistan/                                         # git submodule → https://github.com/hassaniazi/gcam-pakistan @ 4f7e219
+└── docs/                                                  # Sphinx documentation (Read the Docs)
 ```
 
 ## MESSAGEix-Pakistan
 
-MESSAGEix-Pakistan directory contains the input excel workbooks, the scenario notebooks,  and the reporting files. The `data/legacy/` and `report/legacy/` directories are inherited from the MESSAGEix-GLOBIOM ENGAGE reporting routines and adapted for the Pakistan node. Reporting is invoked from `report/legacy/iamc_report_hackathon.py`. Four scenarios are developed: Current Measures (CM), NDC-Unconditional (NDC-U), NDC-Conditional (NDC-C), and Net Zero (NZ). Each is solved through GAMS, and reported in an IAMC format by a dedicated notebook.
+MESSAGEix-Pakistan directory contains the input excel workbooks, the scenario notebooks, and the reporting files. The `data/legacy/` and `report/legacy/` directories are inherited from the MESSAGEix-GLOBIOM ENGAGE reporting routines and adapted for the Pakistan node. Reporting is invoked from `report/legacy/iamc_report_hackathon.py`. Four scenarios are developed: Current Measures (CM), NDC-Unconditional (NDC-U), NDC-Conditional (NDC-C), and Net Zero (NZ). Each is solved through GAMS, and reported in an IAMC format by a dedicated notebook.
 
 ### Prerequisites
 
@@ -54,13 +55,4 @@ GAMS must be installed separately. Please consult https://docs.messageix.org/en/
 
 MESSAGEix-Pakistan is built on the `message_ix` and `ixmp` framework developed by IIASA. Please cite `message_ix` (Huppmann et al., 2019, *Environmental Modelling & Software*) and acknowledge GAMS alongside any use of this repository.
 
-## GCAM-Pakistan
-
-`GCAM-Pakistan/` is a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) pointing to [`hassaniazi/gcam-pakistan`](https://github.com/hassaniazi/gcam-pakistan), pinned to commit [`4f7e219`](https://github.com/hassaniazi/gcam-pakistan/commit/4f7e219ac6bfe0a6fa4caf0d4dc87c1b3d55ffea).
-
-After cloning this repository, initialise and populate the submodule with:
-
-```bash
-git submodule update --init --recursive
-```
-
+**Authors:** Arfa Yaseen, Muhammad Awais
