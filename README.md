@@ -1,9 +1,9 @@
-This repository contains the integrated assessment model setups used to develop the scenarios informing the study *Decarbonization Pathways and Equity Implications of Pakistan's Climate Ambition*. 
+This repository contains the integrated assessment model setups used to develop the scenarios informing the study *Decarbonization Pathways and Equity Implications of Pakistan's Climate Ambition*.
 
 ## Repository structure
 
 ```
-Multi-IAM-Pakistan/
+IAM-Pakistan/
 ├── MESSAGEix-Pakistan/
 │   ├── data/
 │   │   ├── MESSAGEix-Pakistan-CurrentMeasures-SSP2.xlsx   # CM scenario input
@@ -43,12 +43,12 @@ GAMS must be installed separately. Please consult https://docs.messageix.org/en/
 
 ### Scenarios
 
-| Scenario | Notebook | Scenario name (`ixmp`) | Input workbook | Emission treatment |
-| --- | --- | --- | --- | --- |
-| Current Measures | `current_measures.ipynb` | `current-measures` | `MESSAGEix-Pakistan-CurrentMeasures-SSP2.xlsx` | none (baseline) |
-| NDC-Unconditional | `ndc-u.ipynb` | `ndc-u` | `MESSAGEix-Pakistan-NDC-U-SSP2.xlsx` | emission bounds from `emissionAllocation.xlsx` |
-| NDC-Conditional | `ndc-c.ipynb` | `ndc-c` | `MESSAGEix-Pakistan-NDC-C_NZ-SSP2.xlsx` | emission bounds from `emissionAllocation.xlsx` |
-| Net Zero | `net-zero.ipynb` | `net-zero` | `MESSAGEix-Pakistan-NDC-C_NZ-SSP2.xlsx` | emission bounds from `net_zero_emissions()`|
+| Scenario          | Notebook                   | Scenario name (`ixmp`) | Input workbook                                   | Emission treatment                              |
+| ----------------- | -------------------------- | ------------------------ | ------------------------------------------------ | ----------------------------------------------- |
+| Current Measures  | `current_measures.ipynb` | `current-measures`     | `MESSAGEix-Pakistan-CurrentMeasures-SSP2.xlsx` | none (baseline)                                 |
+| NDC-Unconditional | `ndc-u.ipynb`            | `ndc-u`                | `MESSAGEix-Pakistan-NDC-U-SSP2.xlsx`           | emission bounds from`emissionAllocation.xlsx` |
+| NDC-Conditional   | `ndc-c.ipynb`            | `ndc-c`                | `MESSAGEix-Pakistan-NDC-C_NZ-SSP2.xlsx`        | emission bounds from`emissionAllocation.xlsx` |
+| Net Zero          | `net-zero.ipynb`         | `net-zero`             | `MESSAGEix-Pakistan-NDC-C_NZ-SSP2.xlsx`        | emission bounds from`net_zero_emissions()`    |
 
 ### Provenance and attribution
 
@@ -63,4 +63,3 @@ After cloning this repository, initialise and populate the submodule with:
 ```bash
 git submodule update --init --recursive
 ```
-
