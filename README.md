@@ -1,12 +1,5 @@
-# NEST-Pakistan — Visualization
+# Visualization for MESSAGEix-Pakistan Outputs
 
-This branch contains visualization scripts and notebooks for the MESSAGEix-Pakistan energy system model.
+This branch contains visualization scripts and notebooks used to generate the paper's figures.
 
-## Contents
-- **data/** — Model output data from MESSAGEix-Pakistan and GCAM-Pakistan
-- **scripts/** — Plotting and post-processing scripts
-- **notebooks/** — Visualization notebooks
 
-## Related Branches
-- `main` — Stable model codebase
-- `solar` — Rooftop solar PV additions
