@@ -4,7 +4,22 @@
 
 If you use this repository in your research, please cite the associated study:
 
-> *Decarbonization Pathways and Equity Implications of Pakistan's Climate Ambition* (citation details to be added upon publication).
+> Yaseen, A., Awais, M., Niazi, H., Bint Khalil, J., Manzoor, T., & Muhammad, A. (2025). *Decarbonization Pathways and Equity Implications of Pakistan's Climate Ambition*. Centre for Water Informatics & Technology (WIT), LUMS.
+
+BibTeX:
+
+```bibtex
+@article{yaseen2025pakistan,
+  title   = {Decarbonization Pathways and Equity Implications of Pakistan's Climate Ambition},
+  author  = {Yaseen, Arfa and Awais, Muhammad and Niazi, Hassan and {Bint Khalil}, Joudat and Manzoor, Talha and Muhammad, Abubakr},
+  year    = {2025},
+  institution = {Centre for Water Informatics \& Technology (WIT), Lahore University of Management Sciences}
+}
+```
+
+## Funding
+
+This work was supported by the European Commission Directorate-General for Climate Action under the COMMITTED project (Service Contract No. 14020241/2022/884157/SER/CLIMA.A.2).
 
 ## Upstream frameworks
 

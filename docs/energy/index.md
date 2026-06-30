@@ -25,6 +25,7 @@ renewables
 transport
 buildings
 oil_and_gas
+policies
 ```
 
 ```{toctree}
